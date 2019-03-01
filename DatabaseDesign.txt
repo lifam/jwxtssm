@@ -1,0 +1,31 @@
+基本信息： basic_id, 姓名, 性别, 身高, 体重, 出生年月, 家庭地址, 身份证号, 联系信息(address_id), 嘉奖信息, 惩处信息, 信息可见度
+
+联系信息： address_id, basic_id, 类型(邮箱/电话), 具体值
+
+权限： authority_id,  权限码,  有效期
+
+身份： role_id,  具体值(本科生/硕士研究生/博士研究生/教授/副教授/高级讲师/讲师/特聘研究员/助教/教务人员/管理员), 权限(authority_id), basic_id, major_id, org_id, college_id, 有效期
+
+课程： course_id, basic_id, 类型, 成绩, 名称, 时间地点, 简介, 有效期
+
+作业/考核： homework_exam_id, course_id, 说明, 百分比
+
+作业/考核成绩： homework_exam_id, basic_id, 成绩
+
+院系： college_id, 名称, 简介
+
+专业： major_id, 学制, 简介, 名称, 所属院系(college_id), 专必学分, 专选学分, 公必学分, 公选学分
+
+机构： org_id, 名称, 所属院系(college_id)
+
+总成绩(学生)： basic_id, 专必成绩, 专必学分, 专选成绩, 专选学分, 公必成绩, 公必学分, 公选成绩, 公选学分
+
+教务通知： teach_message_id, 标题, 正文, 附件, 类型, basic_id, 发布时间
+
+系统通知： system_message_id, 类型, 内容, basic_id, 产生时间, 优先级
+
+学习讨论： talk_id, 标题， 正文, course_id, basic_id, 热度, 状态, 发起时间, 附件
+
+聊天记录： message_id, talk_id, 内容, basic_id, 时间, 序号, 类型
+
+文件中心： docu_id, basic_id, 状态, 路径, 类型
