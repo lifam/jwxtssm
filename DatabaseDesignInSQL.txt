@@ -1,0 +1,238 @@
+USE jwxt;
+CREATE TABLE basic_info(
+	basic_id int auto_increment,
+	head_img int NOT NULL,
+	address_id int NOT NULL,
+	name varchar(30),
+	password varchar(100),
+	sex int,
+	height float,
+	weight float,
+	birth_info date,
+	home_address varchar(180),
+	formal_id varchar(30),
+	reward_info varchar(1000),
+	punishment_info varchar(1000),
+	info_transparency int,
+	PRIMARY KEY(basic_id),
+	FOREIGN KEY(head_img) REFERENCES doc_center(doc_id),
+	FOREIGN KEY(address_id) REFERENCES address_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE address_info(
+	address_id int auto_increment,
+	basic_id int NOT NULL,
+	type int NOT NULL,
+	info varchar(30) NOT NULL,
+	PRIMARY KEY(address_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE auth_info(
+	auth_id int auto_increment,
+	auth_code int NOT NULL,
+	valid_from date NOT NULL,
+	valid_to date NOT NULL,
+	PRIMARY KEY(auth_id)
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE role(
+	role_id int auto_increment,
+	basic_id int NOT NULL,
+	auth_id int NOT NULL,
+	major_id int NOT NULL,
+	org_id int NOT NULL,
+	college_id int NOT NULL,
+	type int NOT NULL,
+	valid_from date NOT NULL,
+	valid_to date NOT NULL,
+	state int NOT NULL,
+	PRIMARY KEY(role_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info,
+	FOREIGN KEY(auth_id) REFERENCES auth_info,
+	FOREIGN KEY(major_id) REFERENCES major,
+	FOREIGN KEY(org_id) REFERENCES org,
+	FOREIGN KEY(college_id) REFERENCES college
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE course(
+	course_id int auto_increment,
+	basic_id int NOT NULL,
+	type int,
+	score int,
+	name varchar(30),
+	time_location varchar(150),
+	intro varchar(1000),
+	valid_from date, 
+	valid_to date,
+	state int,
+	PRIMARY KEY(course_id, basic_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE course_records(
+	course_id int NOT NULL,
+	basic_id int NOT NULL,
+	final_score int,
+	state int NOT NULL,
+	PRIMARY KEY(course_id, basic_id, state),
+	FOREIGN KEY(course_id) REFERENCES course,
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE homework_exam(
+	homework_exam_id int auto_increment,
+	course_id int NOT NULL,
+	info varchar(150),
+	percent int NOT NULL,
+	PRIMARY KEY(homework_exam_id)
+	FOREIGN KEY(course_id) REFERENCES course
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE homework_exam_score(
+	homework_exam_id int NOT NULL,
+	basic_id int NOT NULL,
+	score int,
+	PRIMARY KEY(homework_exam_id, basic_id),
+	FOREIGN KEY(homework_exam_id) REFERENCES homework_exam,
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE college(
+	college_id int auto_increment,
+	name varchar(30) NOT NULL UNIQUE,
+	intro varchar(2000) NOT NULL,
+	address varchar(150) NOT NULL,
+	PRIMARY KEY(college_id),
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE major(
+	major_id int auto_increment,
+	college_id int NOT NULL,
+	type int NOT NULL,
+	name varchar(30) NOT NULL,
+	intro varchar(1500) NOT NULL,
+	specialized_compulsory_grades int NOT NULL,
+	specialized_elective_grades int NOT NULL,
+	public_compulsory_grades int NOT NULL,
+	public_elective_grades int NOT NULL,
+	PRIMARY KEY(major_id),
+	FOREIGN KEY(college_id) REFERENCES college
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE org(
+	org_id int auto_increment,
+	college_id int NOT NULL,
+	name varchar(30) NOT NULL,
+	PRIMARY KEY(org_id),
+	FOREIGN KEY(course_id) REFERENCES college
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE score_sum(
+	basic_id int NOT NULL,
+	sc_score float NOT NULL,
+	sc_grade int NOT NULL,
+	se_score float NOT NULL,
+	se_grade int NOT NULL,
+	pc_score float NOT NULL,
+	pc_grade int NOT NULL,
+	pe_score float NOT NULL,
+	pe_grade int NOT NULL,
+	PRIMARY KEY(basic_id)
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE edu_message(
+	edu_message_id int auto_increment,
+	basic_id int NOT NULL,
+	attach_doc_id int,
+	title varchar(30) NOT NULL,
+	content varchar(3000) NOT NULL,
+	type int NOT NULL,
+	publish_date date NOT NULL,
+	state int NOT NULL,
+	priority int NOT NULL,
+	PRIMARY KEY(edu_message_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info,
+	FOREIGN KEY(attach_doc_id) REFERENCES attach_doc
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE system_message(
+	system_message_id int auto_increment,
+	basic_id int NOT NULL,
+	type int NOT NULL,
+	content varchar(200) NOT NULL,
+	publish_date date NOT NULL,
+	priority int NOT NULL
+	state int NOT NULL,
+	PRIMARY KEY(system_message_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE study_talking(
+	talk_id int auto_increment,
+	basic_id int NOT NULL,
+	course_id int NOT NULL,
+	attach_doc_id int,
+	title varchar(30) NOT NULL,
+	content varchar(300) NOT NULL,
+	hot float NOT NULL,
+	state int NOT NULL,
+	publish_date date NOT NULL,
+	history_count int NOT NULL,
+	PRIMARY KEY(talk_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info,
+	FOREIGN KEY(course_id) REFERENCES course,
+	FOREIGN KEY(attach_doc_id) REFERENCES attach_doc
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE study_talking_history(
+	message_id int auto_increment,
+	talk_id int NOT NULL,
+	basic_id int NOT NULL,
+	course_id int NOT NULL,
+	content varchar(300) NOT NULL,
+	publish_date date NOT NULL,
+	index_count int NOT NULL,
+	type int NOT NULL,
+	state int NOT NULL,
+	PRIMARY KEY(message_id),
+	FOREIGN KEY(talk_id) REFERENCES study_talking,
+	FOREIGN KEY(basic_id) REFERENCES basic_info,
+	FOREIGN KEY(course_id) REFERENCES course
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE doc_center(
+	doc_id int auto_increment,
+	basic_id int NOT NULL,
+	state int NOT NULL,
+	address varchar(300) NOT NULL,
+	type int NOT NULL,
+	publish_date date NOT NULL,
+	PRIMARY KEY(doc_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE attach_doc(
+	attach_doc_id int auto_increment,
+	doc_id int NOT NULL,
+	PRIMARY KEY(attach_doc_id, doc_id),
+	FOREIGN KEY(doc_id) REFERENCES doc_center
+) ENGINE = InnoDB;
