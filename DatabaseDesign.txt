@@ -1,4 +1,4 @@
-基本信息(basic_info)： basic_id int, 姓名(name varchar(30)), 性别(sex int), 身高(height float), 体重(weight float), 出生年月(birth_info date), 家庭地址(home_address varchar(180)), 身份证号(formal_id varchar(30)), 联系信息(address_id int), 嘉奖信息(reward_info varchar(1000)), 惩处信息(punishment_info varchar(1000)), 信息可见度(info_transparency int), 密码(password varchar(100))
+基本信息(basic_info)： basic_id int, 姓名(name varchar(30)), 性别(sex int), 身高(height float), 体重(weight float), 出生年月(birth_info date), 家庭地址(home_address varchar(180)), 身份证号(formal_id varchar(30)), 联系信息(address_id int), 嘉奖信息(reward_info varchar(1000)), 惩处信息(punishment_info varchar(1000)), 信息可见度(info_transparency int), 密码(password varchar(100)), 头像(head_img int)
 
 联系信息(address_info)： address_id int, basic_id int, 类型(邮箱/电话)(type int), 具体值(info varchar(30))
 
@@ -6,9 +6,9 @@
 
 身份(role)： role_id int,  具体值(本科生/硕士研究生/博士研究生/教授/副教授/高级讲师/讲师/特聘研究员/助教/教务人员/管理员)(type int), 权限(auth_id int), basic_id int, major_id int, org_id int, college_id int, 有效期(valid_from date, valid_to date), 状态(state int)
 
-课程(course)： course_id int, basic_id int, 类型(type int), 成绩(score int), 名称(name varchar(30)), 时间地点(time_location varchar(150)), 简介(intro varchar(1000)), 有效期(valid_from date, valid_to date)
+课程(course)： course_id int, 类型(type int), 成绩(score int), 名称(name varchar(30)), 时间地点(time_location varchar(150)), 简介(intro varchar(1000)), 有效期(valid_from date, valid_to date), 状态(state int)
 
-作业/考试记录(course_records)： 	course_id int, basic_id int, final_score int, state int
+课程记录/最终成绩(course_records)： course_id int, basic_id int, final_score int, state int
 
 作业/考核(homework_exam)： homework_exam_id int, course_id int, 说明(info varchar(150)), 百分比(percent int)
 
@@ -28,7 +28,7 @@
 
 学习讨论(study_talking)： talk_id int, 标题(title varchar(30))， 正文(content varchar(300)), course_id int, basic_id int, 热度(hot float), 状态(state int), 发起时间(publish_date date), 附件(attach_doc_id int), 讨论记录数(history_count int)
 
-聊天记录(study_talking_history)： message_id int, talk_id int, 内容(content int), basic_id int, 时间(publish_date date), 序号(index_count int), 类型(type int), 状态(state int)
+聊天记录(study_talking_history)： message_id int, talk_id int, 内容(content varchar(300)), basic_id int, 时间(publish_date date), 序号(index_count int), 类型(type int), 状态(state int)
 
 文件中心(doc_center)： doc_id int, basic_id int, 状态(state int), 路径(address varchar(300)), 类型(type int), 时间(publish_date date)
 
