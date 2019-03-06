@@ -1,44 +1,65 @@
 USE jwxt;
+-- 个人基本信息
 CREATE TABLE basic_info(
 	basic_id int auto_increment,
-	head_img int NOT NULL,
-	address_id int NOT NULL,
-	name varchar(30),
-	password varchar(100),
+	-- 头像，保存在表doc_center中
+	head_img int,
+	-- 副id，用于学生学号，教师职工号等
+	vice_id int NOT NULL UNIQUE,
+	-- 名字
+	name varchar(30) NOT NULL,
+	-- 密码，使用sha-256
+	password varchar(40) NOT NULL,
+	-- 性别
 	sex int,
+	-- 身高/cm
 	height float,
+	-- 体重/kg
 	weight float,
+	-- 出生年月
 	birth_info date,
+	-- 家庭住址
 	home_address varchar(180),
+	-- 身份证号
 	formal_id varchar(30),
+	-- 表彰信息
 	reward_info varchar(1000),
+	-- 惩罚信息
 	punishment_info varchar(1000),
-	info_transparency int,
+	-- 个人信息可见度，1-名字/头像，2-+学号，3-+性别，4+出生年月，5-+身高/体重
+	info_transparency int NOT NULL,
 	PRIMARY KEY(basic_id),
-	FOREIGN KEY(head_img) REFERENCES doc_center(doc_id),
-	FOREIGN KEY(address_id) REFERENCES address_info
+	FOREIGN KEY(head_img) REFERENCES doc_center(doc_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
+-- 联系信息-邮箱/电话/QQ/微信/微博
 CREATE TABLE address_info(
 	address_id int auto_increment,
 	basic_id int NOT NULL,
+	-- 1-邮箱/2-电话/3-QQ/4-微信/5-微博
 	type int NOT NULL,
+	-- 联系信息具体值
 	info varchar(30) NOT NULL,
 	PRIMARY KEY(address_id),
 	FOREIGN KEY(basic_id) REFERENCES basic_info
 ) ENGINE = InnoDB;
 
 USE jwxt;
+-- 权限信息
 CREATE TABLE auth_info(
 	auth_id int auto_increment,
+	-- 权限码，1-管理员，2-教务员，3-教师，4-助教，5-学生
 	auth_code int NOT NULL,
+	-- 生效日期
 	valid_from date NOT NULL,
+	-- 失效日期
 	valid_to date NOT NULL,
 	PRIMARY KEY(auth_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
+-- 角色
 CREATE TABLE role(
 	role_id int auto_increment,
 	basic_id int NOT NULL,
@@ -46,9 +67,13 @@ CREATE TABLE role(
 	major_id int NOT NULL,
 	org_id int NOT NULL,
 	college_id int NOT NULL,
-	type int NOT NULL,
+	-- 角色类型，1-管理员/2-教务员/4-助教/5-学生/6-教授/7-副教授/8-高级讲师/9-讲师/10-特聘研究员
+	type int NOT NULL,	
+	-- 生效日期
 	valid_from date NOT NULL,
+	-- 失效日期
 	valid_to date NOT NULL,
+	-- 状态，1-正常/2-冻结
 	state int NOT NULL,
 	PRIMARY KEY(role_id),
 	FOREIGN KEY(basic_id) REFERENCES basic_info,
@@ -59,6 +84,7 @@ CREATE TABLE role(
 ) ENGINE = InnoDB;
 
 USE jwxt;
+-- 
 CREATE TABLE course(
 	course_id int auto_increment,
 	basic_id int NOT NULL,

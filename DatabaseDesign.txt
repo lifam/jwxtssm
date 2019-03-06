@@ -4,7 +4,7 @@
 
 权限(auth_info)： auth_id int,  权限码(auth_code int),  有效期(valid_from date, valid_to date)
 
-身份(role)： role_id int,  具体值(本科生/硕士研究生/博士研究生/教授/副教授/高级讲师/讲师/特聘研究员/助教/教务人员/管理员)(type int), 权限(auth_id int), basic_id int, major_id int, org_id int, college_id int, 有效期(valid_from date, valid_to date), 状态(state int)
+身份(role)： role_id int,  具体值(本科生/教授/副教授/高级讲师/讲师/特聘研究员/助教/教务人员/管理员)(type int), 权限(auth_id int), basic_id int, major_id int, org_id int, college_id int, 有效期(valid_from date, valid_to date), 状态(state int)
 
 课程(course)： course_id int, 类型(type int), 成绩(score int), 名称(name varchar(30)), 时间地点(time_location varchar(150)), 简介(intro varchar(1000)), 有效期(valid_from date, valid_to date), 状态(state int)
 
