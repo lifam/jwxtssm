@@ -10,15 +10,15 @@
 
 课程记录/最终成绩(course_records)： course_id int, basic_id int, final_score int, state int
 
-作业/考核(homework_exam)： homework_exam_id int, course_id int, 说明(info varchar(150)), 百分比(percent int)
+作业/考核(homework_exam)： homework_exam_id int, course_id int, 说明(info varchar(150)), 百分比(percent int), 状态(state int)
 
-作业/考核成绩(homework_exam_score)： homework_exam_id int, basic_id int, 成绩(score int)
+作业/考核成绩(homework_exam_score)： homework_exam_id int, basic_id int, 说明(info varchar(20))， 成绩(score int), 状态(state int)
 
 院系(college)： college_id int, 名称(name varchar(30)), 简介(intro varchar(2000)), 地点(address varchar(150))
 
 专业(major)： major_id int, 学制(type int), 简介(intro varchar(1500)), 名称(name varchar(30)), 所属院系(college_id int), 专必学分(specialized_compulsory_grades int), 专选学分(specialized_elective_grades int), 公必学分(public_compulsory_grades int), 公选学分(public_elective_grades int)
 
-机构(organization)： org_id int, 名称(name varchar(30)), 所属院系(college_id int)
+机构(organization)： org_id int, 名称(name varchar(30)), 所属院系(college_id int), 介绍(info varchar(1500))
 
 总成绩(学生)(score_sum)： basic_id int, 专必成绩(sc_score float), 专必学分(sc_grade int), 专选成绩(se_score float), 专选学分(se_grade int), 公必成绩(pc_score float), 公必学分(pc_grade int), 公选成绩(pe_score float), 公选学分(pe_grade int)
 
