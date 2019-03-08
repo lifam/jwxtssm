@@ -8,7 +8,9 @@
 
 课程(course)： course_id int, 类型(type int), 成绩(score int), 名称(name varchar(30)), 时间地点(time_location varchar(150)), 简介(intro varchar(1000)), 有效期(valid_from date, valid_to date), 状态(state int)
 
-课程记录/最终成绩(course_records)： course_id int, basic_id int, final_score int, state int
+评教记录(course_jugde_records): 课程id(course_id), 老师/助教id(basic_id_te), 学生id(basic_id_st), 最终成绩(final_score), 状态(state)
+
+课程记录/最终成绩(course_records)：course_id int, basic_id int, final_score int, state int
 
 作业/考核(homework_exam)： homework_exam_id int, course_id int, 说明(info varchar(150)), 百分比(percent int), 状态(state int)
 
