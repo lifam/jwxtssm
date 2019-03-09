@@ -9,6 +9,16 @@ public class AddressInfo {
 	//联系信息具体值
 	private String info;
 
+	public AddressInfo() {
+	}
+
+	public AddressInfo(int addressId, int basicId, int type, String info) {
+		this.addressId = addressId;
+		this.basicId = basicId;
+		this.type = type;
+		this.info = info;
+	}
+
 	public int getAddressId() {
 		return addressId;
 	}
@@ -39,5 +49,11 @@ public class AddressInfo {
 
 	public void setInfo(String info) {
 		this.info = info;
+	}
+
+	@Override
+	public String toString() {
+		return "AddressInfo{" + "addressId=" + addressId + ", basicId=" + basicId + ", type=" + type + ", info='" +
+                info + '\'' + '}';
 	}
 }

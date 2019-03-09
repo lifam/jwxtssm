@@ -20,6 +20,22 @@ public class Major {
 	//公选学分
 	private int publicElectiveGrades;
 
+	public Major() {
+	}
+
+	public Major(int majorId, int collegeId, int type, String name, String intro, int majorCompulsoryGrades, int
+			majorElectiveGrades, int publicCompulsoryGrades, int publicElectiveGrades) {
+		this.majorId = majorId;
+		this.collegeId = collegeId;
+		this.type = type;
+		this.name = name;
+		this.intro = intro;
+		this.majorCompulsoryGrades = majorCompulsoryGrades;
+		this.majorElectiveGrades = majorElectiveGrades;
+		this.publicCompulsoryGrades = publicCompulsoryGrades;
+		this.publicElectiveGrades = publicElectiveGrades;
+	}
+
 	public int getMajorId() {
 		return majorId;
 	}
@@ -90,5 +106,13 @@ public class Major {
 
 	public void setPublicElectiveGrades(int publicElectiveGrades) {
 		this.publicElectiveGrades = publicElectiveGrades;
+	}
+
+	@Override
+	public String toString() {
+		return "Major{" + "majorId=" + majorId + ", collegeId=" + collegeId + ", type=" + type + ", name='" + name +
+				'\'' + ", intro='" + intro + '\'' + ", majorCompulsoryGrades=" + majorCompulsoryGrades + ", " +
+				"majorElectiveGrades=" + majorElectiveGrades + ", publicCompulsoryGrades=" + publicCompulsoryGrades +
+				", publicElectiveGrades=" + publicElectiveGrades + '}';
 	}
 }

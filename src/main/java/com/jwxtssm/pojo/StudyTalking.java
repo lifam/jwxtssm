@@ -25,6 +25,23 @@ public class StudyTalking {
 	//讨论记录数
 	private int historyCount;
 
+	public StudyTalking() {
+	}
+
+	public StudyTalking(int talkId, int basicId, int courseId, int attachDocId, String title, String content, float
+			hot, int state, Date publishDate, int historyCount) {
+		this.talkId = talkId;
+		this.basicId = basicId;
+		this.courseId = courseId;
+		this.attachDocId = attachDocId;
+		this.title = title;
+		this.content = content;
+		this.hot = hot;
+		this.state = state;
+		this.publishDate = publishDate;
+		this.historyCount = historyCount;
+	}
+
 	public int getTalkId() {
 		return talkId;
 	}
@@ -103,5 +120,12 @@ public class StudyTalking {
 
 	public void setHistoryCount(int historyCount) {
 		this.historyCount = historyCount;
+	}
+
+	@Override
+	public String toString() {
+		return "StudyTalking{" + "talkId=" + talkId + ", basicId=" + basicId + ", courseId=" + courseId + ", " +
+				"attachDocId=" + attachDocId + ", title='" + title + '\'' + ", content='" + content + '\'' + ", hot="
+				+ hot + ", state=" + state + ", publishDate=" + publishDate + ", historyCount=" + historyCount + '}';
 	}
 }

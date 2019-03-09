@@ -16,7 +16,7 @@
 
 作业/考核成绩(homework_exam_score)： homework_exam_id int, basic_id int, 说明(info varchar(20))， 成绩(score int), 状态(state int)
 
-院系(college)： college_id int, 名称(name varchar(30)), 简介(intro varchar(2000)), 地点(address varchar(150))
+院系(college)： college_id int, 名称(name varchar(30)), 简介(intro varchar(2000)), 地点(docAddress varchar(150))
 
 专业(major)： major_id int, 学制(type int), 简介(intro varchar(1500)), 名称(name varchar(30)), 所属院系(college_id int), 专必学分(specialized_compulsory_grades int), 专选学分(specialized_elective_grades int), 公必学分(public_compulsory_grades int), 公选学分(public_elective_grades int)
 
@@ -32,6 +32,6 @@
 
 聊天记录(study_talking_history)： message_id int, talk_id int, 内容(content varchar(300)), basic_id int, 时间(publish_date date), 序号(index_count int), 类型(type int), 状态(state int)
 
-文件中心(doc_center)： doc_id int, basic_id int, 状态(state int), 路径(address varchar(300)), 类型(type int), 时间(publish_date date)
+文件中心(doc_center)： doc_id int, basic_id int, 状态(state int), 路径(docAddress varchar(300)), 类型(type int), 时间(publish_date date)
 
 附件(attach_doc)： attach_doc_id int, doc_id int

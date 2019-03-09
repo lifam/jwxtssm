@@ -10,6 +10,16 @@ public class College {
 	//学院地点
 	private String address;
 
+	public College() {
+	}
+
+	public College(int collegeId, String name, String intro, String address) {
+		this.collegeId = collegeId;
+		this.name = name;
+		this.intro = intro;
+		this.address = address;
+	}
+
 	public int getCollegeId() {
 		return collegeId;
 	}
@@ -40,5 +50,11 @@ public class College {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "College{" + "collegeId=" + collegeId + ", name='" + name + '\'' + ", intro='" + intro + '\'' + ", " +
+				"address='" + address + '\'' + '}';
 	}
 }

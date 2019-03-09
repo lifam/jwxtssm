@@ -10,6 +10,16 @@ public class Org {
 	//介绍
 	private String info;
 
+	public Org() {
+	}
+
+	public Org(int orgId, int collegeId, String name, String info) {
+		this.orgId = orgId;
+		this.collegeId = collegeId;
+		this.name = name;
+		this.info = info;
+	}
+
 	public int getOrgId() {
 		return orgId;
 	}
@@ -40,5 +50,11 @@ public class Org {
 
 	public void setInfo(String info) {
 		this.info = info;
+	}
+
+	@Override
+	public String toString() {
+		return "Org{" + "orgId=" + orgId + ", collegeId=" + collegeId + ", name='" + name + '\'' + ", info='" + info +
+				'\'' + '}';
 	}
 }

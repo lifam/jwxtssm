@@ -161,7 +161,7 @@ CREATE TABLE college(
 	-- 学院介绍
 	intro varchar(2000) NOT NULL,
 	-- 学院地点
-	address varchar(150) NOT NULL,
+	docAddress varchar(150) NOT NULL,
 	PRIMARY KEY(college_id)
 ) ENGINE = InnoDB;
 
@@ -282,8 +282,8 @@ CREATE TABLE doc_center(
 	-- 状态，1-可用/2-不可用
 	state int NOT NULL,
 	-- 文件本地地址
-	address varchar(300) NOT NULL,
-	-- 文件类型，1-头像/2-其它文件
+	docAddress varchar(300) NOT NULL,
+	-- 文件类型，1-其它文件/2-头像
 	type int NOT NULL,
 	-- 上传日期
 	publish_date date NOT NULL,

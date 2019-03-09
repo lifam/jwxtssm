@@ -21,6 +21,22 @@ public class ScoreSum {
 	//公选学分
 	private int peGrade;
 
+	public ScoreSum() {
+	}
+
+	public ScoreSum(int basicId, float mcScore, int mcGrade, float meScore, int meGrade, float pcScore, int pcGrade,
+					float peScore, int peGrade) {
+		this.basicId = basicId;
+		this.mcScore = mcScore;
+		this.mcGrade = mcGrade;
+		this.meScore = meScore;
+		this.meGrade = meGrade;
+		this.pcScore = pcScore;
+		this.pcGrade = pcGrade;
+		this.peScore = peScore;
+		this.peGrade = peGrade;
+	}
+
 	public int getBasicId() {
 		return basicId;
 	}
@@ -91,5 +107,12 @@ public class ScoreSum {
 
 	public void setPeGrade(int peGrade) {
 		this.peGrade = peGrade;
+	}
+
+	@Override
+	public String toString() {
+		return "ScoreSum{" + "basicId=" + basicId + ", mcScore=" + mcScore + ", mcGrade=" + mcGrade + ", meScore=" +
+				meScore + ", meGrade=" + meGrade + ", pcScore=" + pcScore + ", pcGrade=" + pcGrade + ", peScore=" +
+				peScore + ", peGrade=" + peGrade + '}';
 	}
 }

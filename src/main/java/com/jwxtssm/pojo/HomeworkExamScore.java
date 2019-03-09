@@ -2,15 +2,26 @@ package com.jwxtssm.pojo;
 
 //课程作业/考试记录
 public class HomeworkExamScore {
-	private int	homeworkExamId;
+	private int homeworkExamId;
 	//学生id
-	private int	basicId;
+	private int basicId;
 	//作业/考试成绩
-	private int	score;
+	private int score;
 	//评分说明
-	private String	info;
+	private String info;
 	//状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
-	private int	state;
+	private int state;
+
+	public HomeworkExamScore() {
+	}
+
+	public HomeworkExamScore(int homeworkExamId, int basicId, int score, String info, int state) {
+		this.homeworkExamId = homeworkExamId;
+		this.basicId = basicId;
+		this.score = score;
+		this.info = info;
+		this.state = state;
+	}
 
 	public int getHomeworkExamId() {
 		return homeworkExamId;
@@ -50,5 +61,11 @@ public class HomeworkExamScore {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "HomeworkExamScore{" + "homeworkExamId=" + homeworkExamId + ", basicId=" + basicId + ", score=" + score
+				+ ", info='" + info + '\'' + ", state=" + state + '}';
 	}
 }

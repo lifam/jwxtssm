@@ -12,6 +12,17 @@ public class HomeworkExam {
 	//状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	private int state;
 
+	public HomeworkExam() {
+	}
+
+	public HomeworkExam(int homeworkExamId, int courseId, String info, int percent, int state) {
+		this.homeworkExamId = homeworkExamId;
+		this.courseId = courseId;
+		this.info = info;
+		this.percent = percent;
+		this.state = state;
+	}
+
 	public int getHomeworkExamId() {
 		return homeworkExamId;
 	}
@@ -50,5 +61,11 @@ public class HomeworkExam {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "HomeworkExam{" + "homeworkExamId=" + homeworkExamId + ", courseId=" + courseId + ", info='" + info +
+				'\'' + ", percent=" + percent + ", state=" + state + '}';
 	}
 }

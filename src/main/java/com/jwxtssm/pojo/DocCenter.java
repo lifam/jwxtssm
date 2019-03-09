@@ -10,11 +10,23 @@ public class DocCenter {
 	//状态，1-可用/2-不可用
 	private int state;
 	//文件本地地址
-	private String address;
+	private String docAddress;
 	//文件类型，1-头像/2-其它文件
 	private int type;
 	//上传日期
 	private Date publishDate;
+
+	public DocCenter() {
+	}
+
+	public DocCenter(int docId, int basicId, int state, String docAddress, int type, Date publishDate) {
+		this.docId = docId;
+		this.basicId = basicId;
+		this.state = state;
+		this.docAddress = docAddress;
+		this.type = type;
+		this.publishDate = publishDate;
+	}
 
 	public int getDocId() {
 		return docId;
@@ -40,12 +52,12 @@ public class DocCenter {
 		this.state = state;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getDocAddress() {
+		return docAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setDocAddress(String docAddress) {
+		this.docAddress = docAddress;
 	}
 
 	public int getType() {
@@ -62,5 +74,11 @@ public class DocCenter {
 
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
+	}
+
+	@Override
+	public String toString() {
+		return "DocCenter{" + "docId=" + docId + ", basicId=" + basicId + ", state=" + state + ", docAddress='" + docAddress
+				+ '\'' + ", type=" + type + ", publishDate=" + publishDate + '}';
 	}
 }

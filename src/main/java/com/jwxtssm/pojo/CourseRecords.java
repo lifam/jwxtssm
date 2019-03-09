@@ -11,6 +11,16 @@ public class CourseRecords {
 	//状态，1-正常/2-缓考/3-重考1/4-重考2/5-重考3/6-评教，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	private int state;
 
+	public CourseRecords() {
+	}
+
+	public CourseRecords(int courseId, int basicId, int finalScore, int state) {
+		this.courseId = courseId;
+		this.basicId = basicId;
+		this.finalScore = finalScore;
+		this.state = state;
+	}
+
 	public int getCourseId() {
 		return courseId;
 	}
@@ -41,5 +51,11 @@ public class CourseRecords {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "CourseRecords{" + "courseId=" + courseId + ", basicId=" + basicId + ", finalScore=" + finalScore + ", " +
+				"" + "state=" + state + '}';
 	}
 }

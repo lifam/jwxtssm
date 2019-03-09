@@ -22,6 +22,22 @@ public class EduMessage {
 	//优先级，1<2<3<...
 	private int priority;
 
+	public EduMessage() {
+	}
+
+	public EduMessage(int eduMessageId, int basicId, int attachDocId, String title, String content, int type, Date
+			publishDate, int state, int priority) {
+		this.eduMessageId = eduMessageId;
+		this.basicId = basicId;
+		this.attachDocId = attachDocId;
+		this.title = title;
+		this.content = content;
+		this.type = type;
+		this.publishDate = publishDate;
+		this.state = state;
+		this.priority = priority;
+	}
+
 	public int getEduMessageId() {
 		return eduMessageId;
 	}
@@ -92,5 +108,12 @@ public class EduMessage {
 
 	public void setPriority(int priority) {
 		this.priority = priority;
+	}
+
+	@Override
+	public String toString() {
+		return "EduMessage{" + "eduMessageId=" + eduMessageId + ", basicId=" + basicId + ", attachDocId=" +
+				attachDocId + ", title='" + title + '\'' + ", content='" + content + '\'' + ", type=" + type + ", " +
+				"publishDate=" + publishDate + ", state=" + state + ", priority=" + priority + '}';
 	}
 }

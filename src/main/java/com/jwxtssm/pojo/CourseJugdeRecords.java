@@ -13,6 +13,17 @@ public class CourseJugdeRecords {
 	//状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	private int state;
 
+	public CourseJugdeRecords() {
+	}
+
+	public CourseJugdeRecords(int courseId, int basicIdTe, int basicIdSt, int finalScore, int state) {
+		this.courseId = courseId;
+		this.basicIdTe = basicIdTe;
+		this.basicIdSt = basicIdSt;
+		this.finalScore = finalScore;
+		this.state = state;
+	}
+
 	public int getCourseId() {
 		return courseId;
 	}
@@ -51,5 +62,11 @@ public class CourseJugdeRecords {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "CourseJugdeRecords{" + "courseId=" + courseId + ", basicIdTe=" + basicIdTe + ", basicIdSt=" +
+				basicIdSt + ", finalScore=" + finalScore + ", state=" + state + '}';
 	}
 }

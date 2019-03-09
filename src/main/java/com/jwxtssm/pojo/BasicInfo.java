@@ -10,9 +10,9 @@ public class BasicInfo {
 	//副id，用于学生学号，教师职工号等
 	private int viceId;
 	//名字
-	private String  name;
+	private String name;
 	//密码，使用sha-256
-	private String  password;
+	private String password;
 	//性别
 	private int sex;
 	//身高/cm
@@ -31,6 +31,28 @@ public class BasicInfo {
 	private String punishmentInfo;
 	//个人信息可见度，1-名字/头像，2-+学号，3-+性别，4+出生年月，5-+身高/体重
 	private int infoTransparency;
+
+	public BasicInfo() {
+	}
+
+	public BasicInfo(int basicId, int headImg, int viceId, String name, String password, int sex, float height, float
+			weight, Date birthInfo, String homeAddress, String formalId, String rewardInfo, String punishmentInfo, int
+			infoTransparency) {
+		this.basicId = basicId;
+		this.headImg = headImg;
+		this.viceId = viceId;
+		this.name = name;
+		this.password = password;
+		this.sex = sex;
+		this.height = height;
+		this.weight = weight;
+		this.birthInfo = birthInfo;
+		this.homeAddress = homeAddress;
+		this.formalId = formalId;
+		this.rewardInfo = rewardInfo;
+		this.punishmentInfo = punishmentInfo;
+		this.infoTransparency = infoTransparency;
+	}
 
 	public int getBasicId() {
 		return basicId;
@@ -142,5 +164,14 @@ public class BasicInfo {
 
 	public void setInfoTransparency(int infoTransparency) {
 		this.infoTransparency = infoTransparency;
+	}
+
+	@Override
+	public String toString() {
+		return "BasicInfo{" + "basicId=" + basicId + ", headImg=" + headImg + ", viceId=" + viceId + ", name='" + name
+				+ '\'' + ", password='" + password + '\'' + ", sex=" + sex + ", height=" + height + ", weight=" +
+				weight + ", birthInfo=" + birthInfo + ", homeAddress='" + homeAddress + '\'' + ", formalId='" +
+				formalId + '\'' + ", rewardInfo='" + rewardInfo + '\'' + ", punishmentInfo='" + punishmentInfo + '\''
+				+ ", infoTransparency=" + infoTransparency + '}';
 	}
 }

@@ -26,6 +26,6 @@
     </typeAliases>
 
     <mappers>
-        <mapper resource="classpath:/BasicInfoMapper.xml"/>
+        <mapper resource="classpath:mapping/*.xml"/>
     </mappers>
 </configuration>

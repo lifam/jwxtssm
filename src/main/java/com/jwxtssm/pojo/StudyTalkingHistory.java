@@ -22,6 +22,22 @@ public class StudyTalkingHistory {
 	//状态，1-有效/2-无效
 	private int state;
 
+	public StudyTalkingHistory() {
+	}
+
+	public StudyTalkingHistory(int messageId, int talkId, int basicId, int courseId, String content, Date publishDate,
+							   int indexCount, int type, int state) {
+		this.messageId = messageId;
+		this.talkId = talkId;
+		this.basicId = basicId;
+		this.courseId = courseId;
+		this.content = content;
+		this.publishDate = publishDate;
+		this.indexCount = indexCount;
+		this.type = type;
+		this.state = state;
+	}
+
 	public int getMessageId() {
 		return messageId;
 	}
@@ -92,5 +108,12 @@ public class StudyTalkingHistory {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "StudyTalkingHistory{" + "messageId=" + messageId + ", talkId=" + talkId + ", basicId=" + basicId + ", " +
+				"" + "courseId=" + courseId + ", content='" + content + '\'' + ", publishDate=" + publishDate + ", " +
+				"indexCount=" + indexCount + ", type=" + type + ", state=" + state + '}';
 	}
 }

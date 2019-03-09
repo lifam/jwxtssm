@@ -19,6 +19,23 @@ public class Role {
 	//状态，1-正常/2-冻结
 	private int state;
 
+	public Role() {
+	}
+
+	public Role(int roleId, int basicId, int authId, int majorId, int orgId, int collegeId, int type, Date validFrom,
+				Date validTo, int state) {
+		this.roleId = roleId;
+		this.basicId = basicId;
+		this.authId = authId;
+		this.majorId = majorId;
+		this.orgId = orgId;
+		this.collegeId = collegeId;
+		this.type = type;
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.state = state;
+	}
+
 	public int getRoleId() {
 		return roleId;
 	}
@@ -97,5 +114,12 @@ public class Role {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "Role{" + "roleId=" + roleId + ", basicId=" + basicId + ", authId=" + authId + ", majorId=" + majorId +
+				", orgId=" + orgId + ", collegeId=" + collegeId + ", type=" + type + ", validFrom=" + validFrom + ", "
+				+ "validTo=" + validTo + ", state=" + state + '}';
 	}
 }

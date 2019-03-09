@@ -13,10 +13,24 @@ public class SystemMessage {
 	private String content;
 	//通知发布日期
 	private Date publishDate;
-	//通知优先级
+	//通知优先级, 0-默认值
 	private int priority;
 	//通知状态，1-未读/2-已读/3-无效
 	private int state;
+
+	public SystemMessage() {
+	}
+
+	public SystemMessage(int systemMessageId, int basicId, int type, String content, Date publishDate, int priority,
+						 int state) {
+		this.systemMessageId = systemMessageId;
+		this.basicId = basicId;
+		this.type = type;
+		this.content = content;
+		this.publishDate = publishDate;
+		this.priority = priority;
+		this.state = state;
+	}
 
 	public int getSystemMessageId() {
 		return systemMessageId;
@@ -72,5 +86,12 @@ public class SystemMessage {
 
 	public void setState(int state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "SystemMessage{" + "systemMessageId=" + systemMessageId + ", basicId=" + basicId + ", type=" + type +
+				", content='" + content + '\'' + ", publishDate=" + publishDate + ", priority=" + priority + ", " +
+				"state=" + state + '}';
 	}
 }
