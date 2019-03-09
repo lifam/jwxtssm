@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.jwxtssm.pojo.AddressInfo" alias="AddressInfo" />
+        <typeAlias type="com.jwxtssm.pojo.AttachDoc" alias="AttachDoc" />
+        <typeAlias type="com.jwxtssm.pojo.AuthInfo" alias="AuthInfo" />
+        <typeAlias type="com.jwxtssm.pojo.BasicInfo" alias="BasicInfo" />
+        <typeAlias type="com.jwxtssm.pojo.College" alias="College" />
+        <typeAlias type="com.jwxtssm.pojo.Course" alias="Course" />
+        <typeAlias type="com.jwxtssm.pojo.CourseJugdeRecords" alias="CourseJugdeRecords" />
+        <typeAlias type="com.jwxtssm.pojo.CourseRecords" alias="CourseRecords" />
+        <typeAlias type="com.jwxtssm.pojo.DocCenter" alias="DocCenter" />
+        <typeAlias type="com.jwxtssm.pojo.EduMessage" alias="EduMessage" />
+        <typeAlias type="com.jwxtssm.pojo.HomeworkExam" alias="HomeworkExam" />
+        <typeAlias type="com.jwxtssm.pojo.HomeworkExamScore" alias="HomeworkExamScore" />
+        <typeAlias type="com.jwxtssm.pojo.Major" alias="Major" />
+        <typeAlias type="com.jwxtssm.pojo.Org" alias="Org" />
+        <typeAlias type="com.jwxtssm.pojo.Role" alias="Role" />
+        <typeAlias type="com.jwxtssm.pojo.ScoreSum" alias="ScoreSum" />
+        <typeAlias type="com.jwxtssm.pojo.StudyTalking" alias="StudyTalking" />
+        <typeAlias type="com.jwxtssm.pojo.StudyTalkingHistory" alias="StudyTalkingHistory" />
+        <typeAlias type="com.jwxtssm.pojo.SystemMessage" alias="SystemMessage" />
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="classpath:/BasicInfoMapper.xml"/>
+    </mappers>
+</configuration>
