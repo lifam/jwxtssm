@@ -1,4 +1,4 @@
-package com.jwxtssm.pojo;
+package com.jwxtssm.pojo.mapper;
 
 //课程作业/考试
 public class HomeworkExam {

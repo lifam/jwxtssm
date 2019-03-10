@@ -1,4 +1,4 @@
-package com.jwxtssm.pojo;
+package com.jwxtssm.pojo.mapper;
 
 //评教记录
 public class CourseJugdeRecords {

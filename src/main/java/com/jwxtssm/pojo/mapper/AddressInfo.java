@@ -1,4 +1,4 @@
-package com.jwxtssm.pojo;
+package com.jwxtssm.pojo.mapper;
 
 //联系信息-邮箱/电话/QQ/微信/微博
 public class AddressInfo {

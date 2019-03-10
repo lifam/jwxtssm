@@ -1,4 +1,4 @@
-package com.jwxtssm.pojo;
+package com.jwxtssm.pojo.mapper;
 
 //学院
 public class College {

@@ -7,9 +7,11 @@
         <property name="mappings">
             <props>
                 <prop key="test.html">testController</prop>
+                <prop key="init.html">initController</prop>
             </props>
         </property>
     </bean>
 
     <bean id="testController" class="com.jwxtssm.controller.testController"></bean>
+    <bean id="initController" class="com.jwxtssm.controller.testController"></bean>
 </beans>

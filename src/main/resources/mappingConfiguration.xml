@@ -4,46 +4,46 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.jwxtssm.pojo.AddressInfo" alias="AddressInfo" />
-        <typeAlias type="com.jwxtssm.pojo.AttachDoc" alias="AttachDoc" />
-        <typeAlias type="com.jwxtssm.pojo.AuthInfo" alias="AuthInfo" />
-        <typeAlias type="com.jwxtssm.pojo.BasicInfo" alias="BasicInfo" />
-        <typeAlias type="com.jwxtssm.pojo.College" alias="College" />
-        <typeAlias type="com.jwxtssm.pojo.Course" alias="Course" />
-        <typeAlias type="com.jwxtssm.pojo.CourseJugdeRecords" alias="CourseJugdeRecords" />
-        <typeAlias type="com.jwxtssm.pojo.CourseRecords" alias="CourseRecords" />
-        <typeAlias type="com.jwxtssm.pojo.DocCenter" alias="DocCenter" />
-        <typeAlias type="com.jwxtssm.pojo.EduMessage" alias="EduMessage" />
-        <typeAlias type="com.jwxtssm.pojo.HomeworkExam" alias="HomeworkExam" />
-        <typeAlias type="com.jwxtssm.pojo.HomeworkExamScore" alias="HomeworkExamScore" />
-        <typeAlias type="com.jwxtssm.pojo.Major" alias="Major" />
-        <typeAlias type="com.jwxtssm.pojo.Org" alias="Org" />
-        <typeAlias type="com.jwxtssm.pojo.Role" alias="Role" />
-        <typeAlias type="com.jwxtssm.pojo.ScoreSum" alias="ScoreSum" />
-        <typeAlias type="com.jwxtssm.pojo.StudyTalking" alias="StudyTalking" />
-        <typeAlias type="com.jwxtssm.pojo.StudyTalkingHistory" alias="StudyTalkingHistory" />
-        <typeAlias type="com.jwxtssm.pojo.SystemMessage" alias="SystemMessage" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.AddressInfo" alias="AddressInfo" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.AttachDoc" alias="AttachDoc" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.AuthInfo" alias="AuthInfo" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.BasicInfo" alias="BasicInfo" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.College" alias="College" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.Course" alias="Course" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.CourseJugdeRecords" alias="CourseJugdeRecords" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.CourseRecords" alias="CourseRecords" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.DocCenter" alias="DocCenter" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.EduMessage" alias="EduMessage" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.HomeworkExam" alias="HomeworkExam" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.HomeworkExamScore" alias="HomeworkExamScore" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.Major" alias="Major" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.Org" alias="Org" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.Role" alias="Role" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.ScoreSum" alias="ScoreSum" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.StudyTalking" alias="StudyTalking" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.StudyTalkingHistory" alias="StudyTalkingHistory" />
+        <typeAlias type="com.jwxtssm.pojo.mapper.SystemMessage" alias="SystemMessage" />
     </typeAliases>
 
     <mappers>
-        <mapper resource="mapping/AddressInfoMapper.xml"/>
-        <mapper resource="mapping/AttachDocMapper.xml"/>
-        <mapper resource="mappingConfiguration.xml:31"/>
-        <mapper resource="mapping/BasicInfoMapper.xml"/>
-        <mapper resource="mapping/CollegeMapper.xml"/>
-        <mapper resource="mapping/CourseJugdeRecordsMapper.xml"/>
-        <mapper resource="mapping/CourseMapper.xml"/>
-        <mapper resource="mapping/CourseRecordsMapper.xml"/>
-        <mapper resource="mapping/DocCenterMapper.xml"/>
-        <mapper resource="mapping/EduMessageMapper.xml"/>
-        <mapper resource="mapping/HomeworkExamMapper.xml"/>
-        <mapper resource="mapping/HomeworkExamScoreMapper.xml"/>
-        <mapper resource="mapping/MajorMapper.xml"/>
-        <mapper resource="mapping/OrgMapper.xml"/>
-        <mapper resource="mapping/RoleMapper.xml"/>
-        <mapper resource="mapping/ScoreSumMapper.xml"/>
-        <mapper resource="mapping/StudyTalkingHistoryMapper.xml"/>
-        <mapper resource="mapping/StudyTalkingMapper.xml"/>
-        <mapper resource="mapping/SystemMessageMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/AddressInfoMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/AttachDocMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/AuthInfoMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/BasicInfoMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/CollegeMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/CourseJugdeRecordsMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/CourseMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/CourseRecordsMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/DocCenterMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/EduMessageMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/HomeworkExamMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/HomeworkExamScoreMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/MajorMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/OrgMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/RoleMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/ScoreSumMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/StudyTalkingHistoryMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/StudyTalkingMapper.xml"/>
+        <mapper resource="com/jwxtssm/pojo/mapping/SystemMessageMapper.xml"/>
     </mappers>
 </configuration>
