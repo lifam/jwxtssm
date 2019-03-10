@@ -3,4 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jwxtssm.dao.IStudyTalkingHistory">
+    <insert id="com.jwxtssm.dao.IStudyTalkingHistory.addStudyTalkingHistory" parameterType="StudyTalkingHistory" useGeneratedKeys="true" keyProperty="messageId">
+        insert into study_talking_history values (null, #{talkId}, #{basicId}, #{courseId}, #{content}, #{publishDate}, #{indexCount}, #{type}, #{state});
+    </insert>
 </mapper>

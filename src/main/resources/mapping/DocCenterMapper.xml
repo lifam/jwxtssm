@@ -3,4 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jwxtssm.dao.IDocCenter">
+    <insert id="com.jwxtssm.dao.IDocCenter.addDocCenter" parameterType="DocCenter" useGeneratedKeys="true" keyProperty="docId">
+        insert into doc_center values (null, #{basicId}, #{state}, #{docAddress}, #{type}, #{publishDate})
+    </insert>
 </mapper>

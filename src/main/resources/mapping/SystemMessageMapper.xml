@@ -3,4 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jwxtssm.dao.ISystemMessage">
+    <insert id="com.jwxtssm.dao.ISystemMessage.addSystemMessage" parameterType="SystemMessage" useGeneratedKeys="true" keyProperty="systemMessageId">
+        insert into system_message values (null, #{basicId}, #{type}, #{content}, #{publishDate}, #{priority}, #{state});
+    </insert>
 </mapper>

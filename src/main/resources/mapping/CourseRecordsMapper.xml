@@ -3,4 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jwxtssm.dao.ICourseRecords">
+    <insert id="com.jwxtssm.dao.ICourseRecords.addCourseRecords" parameterType="CourseRecords">
+        insert into course_records values (#{courseId}, #{basicId}, #{finalScore}, #{state})
+    </insert>
 </mapper>

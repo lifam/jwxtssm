@@ -26,6 +26,24 @@
     </typeAliases>
 
     <mappers>
-        <mapper resource="classpath:mapping/*.xml"/>
+        <mapper resource="mapping/AddressInfoMapper.xml"/>
+        <mapper resource="mapping/AttachDocMapper.xml"/>
+        <mapper resource="mappingConfiguration.xml:31"/>
+        <mapper resource="mapping/BasicInfoMapper.xml"/>
+        <mapper resource="mapping/CollegeMapper.xml"/>
+        <mapper resource="mapping/CourseJugdeRecordsMapper.xml"/>
+        <mapper resource="mapping/CourseMapper.xml"/>
+        <mapper resource="mapping/CourseRecordsMapper.xml"/>
+        <mapper resource="mapping/DocCenterMapper.xml"/>
+        <mapper resource="mapping/EduMessageMapper.xml"/>
+        <mapper resource="mapping/HomeworkExamMapper.xml"/>
+        <mapper resource="mapping/HomeworkExamScoreMapper.xml"/>
+        <mapper resource="mapping/MajorMapper.xml"/>
+        <mapper resource="mapping/OrgMapper.xml"/>
+        <mapper resource="mapping/RoleMapper.xml"/>
+        <mapper resource="mapping/ScoreSumMapper.xml"/>
+        <mapper resource="mapping/StudyTalkingHistoryMapper.xml"/>
+        <mapper resource="mapping/StudyTalkingMapper.xml"/>
+        <mapper resource="mapping/SystemMessageMapper.xml"/>
     </mappers>
 </configuration>
