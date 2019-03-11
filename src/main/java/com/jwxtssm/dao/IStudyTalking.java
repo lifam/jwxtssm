@@ -1,6 +1,6 @@
 package com.jwxtssm.dao;
 
-import com.jwxtssm.pojo.mapper.StudyTalking;
+import com.jwxtssm.pojo.StudyTalking;
 import org.springframework.stereotype.Repository;
 
 @Repository

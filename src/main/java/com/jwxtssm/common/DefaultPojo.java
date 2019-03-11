@@ -1,6 +1,6 @@
 package com.jwxtssm.common;
 
-import com.jwxtssm.pojo.mapper.*;
+import com.jwxtssm.pojo.*;
 
 public class DefaultPojo {
 	public static final AddressInfo DEFAULT_ADDRESS_INFO = getDefaultAddressInfo();

@@ -1,6 +1,6 @@
 package com.jwxtssm.dao;
 
-import com.jwxtssm.pojo.mapper.HomeworkExamScore;
+import com.jwxtssm.pojo.HomeworkExamScore;
 import org.springframework.stereotype.Repository;
 
 @Repository

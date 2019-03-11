@@ -2,48 +2,27 @@ package com.jwxtssm.service;
 
 import com.jwxtssm.common.DefaultPojo;
 import com.jwxtssm.dao.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class DatabaseInit {
-	@Autowired
 	IAddressInfo iAddressInfo;
-	@Autowired
 	IAttachDoc iAttachDoc;
-	@Autowired
 	IAuthInfo iAuthInfo;
-	@Autowired
 	IBasicInfo iBasicInfo;
-	@Autowired
 	ICollege iCollege;
-	@Autowired
 	ICourse iCourse;
-	@Autowired
 	ICourseJudgeRecords iCourseJudgeRecords;
-	@Autowired
 	ICourseRecords iCourseRecords;
-	@Autowired
 	IDocCenter iDocCenter;
-	@Autowired
 	IEduMessage iEduMessage;
-	@Autowired
 	IHomeworkExam iHomeworkExam;
-	@Autowired
 	IHomeworkExamScore iHomeworkExamScore;
-	@Autowired
 	IMajor iMajor;
-	@Autowired
 	IOrg iOrg;
-	@Autowired
 	IRole iRole;
-	@Autowired
 	IScoreSum iScoreSum;
-	@Autowired
 	IStudyTalking iStudyTalking;
-	@Autowired
 	IStudyTalkingHistory iStudyTalkingHistory;
-	@Autowired
 	ISystemMessage iSystemMessage;
 
 	public String init() {

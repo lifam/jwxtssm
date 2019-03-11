@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="databaseInit" class="com.jwxtssm.service.DatabaseInit">
+        <property name="iAddressInfo"><ref bean="iAddressInfo"/></property>
+        <property name="iAttachDoc"><ref bean="iAttachDoc"/></property>
+        <property name="iAuthInfo"><ref bean="iAuthInfo"/></property>
+        <property name="iBasicInfo"><ref bean="iBasicInfo"/></property>
+        <property name="iCollege"><ref bean="iCollege"/></property>
+        <property name="iCourse"><ref bean="iCourse"/></property>
+        <property name="iCourseJudgeRecords"><ref bean="iCourseJudgeRecords"/></property>
+        <property name="iCourseRecords"><ref bean="iCourseRecords"/></property>
+        <property name="iDocCenter"><ref bean="iDocCenter"/></property>
+        <property name="iEduMessage"><ref bean="iEduMessage"/></property>
+        <property name="iHomeworkExam"><ref bean="iHomeworkExam"/></property>
+        <property name="iHomeworkExamScore"><ref bean="iHomeworkExamScore"/></property>
+        <property name="iMajor"><ref bean="iMajor"/></property>
+        <property name="iOrg"><ref bean="iOrg"/></property>
+        <property name="iRole"><ref bean="iRole"/></property>
+        <property name="iScoreSum"><ref bean="iScoreSum"/></property>
+        <property name="iStudyTalking"><ref bean="iStudyTalking"/></property>
+        <property name="iStudyTalkingHistory"><ref bean="iStudyTalkingHistory"/></property>
+        <property name="iSystemMessage"><ref bean="iSystemMessage"/></property>
+    </bean>
+
+    <bean id="initController" class="com.jwxtssm.controller.initController">
+        <property name="databaseInit"><ref bean="databaseInit"/></property>
+    </bean>
+
+</beans>

@@ -1,6 +1,6 @@
 package com.jwxtssm.dao;
 
-import com.jwxtssm.pojo.mapper.DocCenter;
+import com.jwxtssm.pojo.DocCenter;
 import org.springframework.stereotype.Repository;
 
 @Repository

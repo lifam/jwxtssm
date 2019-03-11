@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.jwxtssm.dao.IOrg">
-    <insert id="com.jwxtssm.dao.IOrg.addOrg" parameterType="Org" useGeneratedKeys="true" keyProperty="orgId">
-        insert into org values (null, #{collegeId}, #{name}, #{info});
-    </insert>
-</mapper>

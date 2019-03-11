@@ -1,6 +1,6 @@
 package com.jwxtssm.dao;
 
-import com.jwxtssm.pojo.mapper.ScoreSum;
+import com.jwxtssm.pojo.ScoreSum;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jwxtssm.dao.IAddressInfo">
+    <insert id="addAddressInfo" parameterType="AddressInfo" useGeneratedKeys="true" keyProperty="addressId">
+        insert into address_info values (null, #{basicId}, #{type}, #{info});
+    </insert>
+</mapper>

@@ -1,6 +1,6 @@
 package com.jwxtssm.dao;
 
-import com.jwxtssm.pojo.mapper.EduMessage;
+import com.jwxtssm.pojo.EduMessage;
 import org.springframework.stereotype.Repository;
 
 @Repository

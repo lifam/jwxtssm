@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.jwxtssm.dao.ICourse">
-    <insert id="com.jwxtssm.dao.ICourse.addCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="courseId">
-        insert into course values (null, #{basicId}, #{type}, #{score}, #{name}, #{timeLocation}, #{intro}, #{validFrom}, #{validTo}, #{state})
-    </insert>
-</mapper>
