@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jwxtssm.dao.CourseJudgeRecordsDao">
+    <insert id="addCourseJudgeRecords" parameterType="CourseJudgeRecords">
+        insert into course_jugde_records values (#{courseId}, #{basicIdTe}, #{basicIdSt}, #{finalScore}, #{state});
+    </insert>
+</mapper>

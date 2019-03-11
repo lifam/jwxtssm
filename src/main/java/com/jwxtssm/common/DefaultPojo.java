@@ -1,6 +1,6 @@
 package com.jwxtssm.common;
 
-import com.jwxtssm.pojo.*;
+import com.jwxtssm.entity.*;
 
 public class DefaultPojo {
 	public static final AddressInfo DEFAULT_ADDRESS_INFO = getDefaultAddressInfo();
@@ -9,7 +9,7 @@ public class DefaultPojo {
 	public static final BasicInfo DEFAULT_BASIC_INFO = getDefaultBasicInfo();
 	public static final College DEFAULT_COLLEGE = getDefaultCollege();
 	public static final Course DEFAULT_COURSE = getDefaultCourse();
-	public static final CourseJugdeRecords DEFAULT_COURSE_JUGDE_RECORDS = getDefaultCourseJugdeRecords();
+	public static final CourseJudgeRecords DEFAULT_COURSE_JUGDE_RECORDS = getDefaultCourseJugdeRecords();
 	public static final CourseRecords DEFAULT_COURSE_RECORDS = getDefaultCourseRecords();
 	public static final DocCenter DEFAULT_DOC_CENTER = getDefaultDocCenter();
 	public static final EduMessage DEFAULT_EDU_MESSAGE = getDefaultEduMessage();
@@ -54,8 +54,8 @@ public class DefaultPojo {
 				DefaultValues.VALID_TO, DefaultValues.STATE);
 	}
 
-	public static CourseJugdeRecords getDefaultCourseJugdeRecords() {
-		return new CourseJugdeRecords(DefaultValues.COURSE_ID, DefaultValues.BASIC_ID_TE, DefaultValues.BASIC_ID_ST,
+	public static CourseJudgeRecords getDefaultCourseJugdeRecords() {
+		return new CourseJudgeRecords(DefaultValues.COURSE_ID, DefaultValues.BASIC_ID_TE, DefaultValues.BASIC_ID_ST,
 				DefaultValues.FINAL_SCORE, DefaultValues.STATE);
 	}
 

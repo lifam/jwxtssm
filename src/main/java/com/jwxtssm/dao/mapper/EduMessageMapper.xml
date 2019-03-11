@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.jwxtssm.dao.IEduMessage">
-    <insert id="addEduMessage" parameterType="EduMessage" useGeneratedKeys="true" keyProperty="eduMessageId">
-        insert into edu_message values (null, #{basicId}, #{attachDocId}, #{title}, #{content}, #{type}, #{publishDate}, #{state}, #{priority});
-    </insert>
-</mapper>

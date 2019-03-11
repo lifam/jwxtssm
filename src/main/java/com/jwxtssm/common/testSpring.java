@@ -1,6 +1,6 @@
 package com.jwxtssm.common;
 
-import com.jwxtssm.controller.TestAction;
+import com.jwxtssm.web.TestAction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

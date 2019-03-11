@@ -2,29 +2,52 @@ package com.jwxtssm.service;
 
 import com.jwxtssm.common.DefaultPojo;
 import com.jwxtssm.dao.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class DatabaseInit {
-	IAddressInfo iAddressInfo;
-	IAttachDoc iAttachDoc;
-	IAuthInfo iAuthInfo;
-	IBasicInfo iBasicInfo;
-	ICollege iCollege;
-	ICourse iCourse;
-	ICourseJudgeRecords iCourseJudgeRecords;
-	ICourseRecords iCourseRecords;
-	IDocCenter iDocCenter;
-	IEduMessage iEduMessage;
-	IHomeworkExam iHomeworkExam;
-	IHomeworkExamScore iHomeworkExamScore;
-	IMajor iMajor;
-	IOrg iOrg;
-	IRole iRole;
-	IScoreSum iScoreSum;
-	IStudyTalking iStudyTalking;
-	IStudyTalkingHistory iStudyTalkingHistory;
-	ISystemMessage iSystemMessage;
+	@Autowired
+	AddressInfoDao iAddressInfo;
+	@Autowired
+	AttachDocDao iAttachDoc;
+	@Autowired
+	AuthInfoDao iAuthInfo;
+	@Autowired
+	BasicInfoDao iBasicInfo;
+	@Autowired
+	CollegeDao iCollege;
+	@Autowired
+	CourseDao iCourse;
+	@Autowired
+	CourseJudgeRecordsDao iCourseJudgeRecords;
+	@Autowired
+	CourseRecordsDao iCourseRecords;
+	@Autowired
+	DocCenterDao iDocCenter;
+	@Autowired
+	EduMessageDao iEduMessage;
+	@Autowired
+	HomeworkExamDao iHomeworkExam;
+	@Autowired
+	HomeworkExamScoreDao iHomeworkExamScore;
+	@Autowired
+	MajorDao iMajor;
+	@Autowired
+	OrgDao iOrg;
+	@Autowired
+	RoleDao iRole;
+	@Autowired
+	ScoreSumDao iScoreSum;
+	@Autowired
+	StudyTalkingDao iStudyTalking;
+	@Autowired
+	StudyTalkingHistoryDao iStudyTalkingHistory;
+	@Autowired
+	SystemMessageDao iSystemMessage;
 
+	@Transactional
 	public String init() {
 		StringBuilder result = new StringBuilder();
 		int count;

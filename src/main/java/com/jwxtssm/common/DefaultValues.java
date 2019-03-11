@@ -20,6 +20,7 @@ public class DefaultValues {
 	public static final int EDU_MESSAGE_ID = 1;
 	public static final int TALK_ID = 1;
 	public static final int HEAD_IMG = 1;
+	public static final int HOMEWORK_EXAM_ID = 1;
 	public static final int SEX = 0;
 	public static final int INFO_TRANSPARENCY = 1;
 	public static final int TYPE = 1;
@@ -27,7 +28,6 @@ public class DefaultValues {
 	public static final int SCORE = 0;
 	public static final int STATE = 0;
 	public static final int FINAL_SCORE = 0;
-	public static final int HOMEWORK_EXAM_ID = 0;
 	public static final int PERCENT = 0;
 	public static final int MAJOR_COMPULSORY_GRADES = 0;
 	public static final int MAJOR_ELECTIVE_GRADES = 0;
