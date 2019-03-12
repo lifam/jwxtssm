@@ -9,43 +9,43 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DatabaseInit {
 	@Autowired
-	AddressInfoDao iAddressInfo;
+	private AddressInfoDao iAddressInfo;
 	@Autowired
-	AttachDocDao iAttachDoc;
+	private AttachDocDao iAttachDoc;
 	@Autowired
-	AuthInfoDao iAuthInfo;
+	private AuthInfoDao iAuthInfo;
 	@Autowired
-	BasicInfoDao iBasicInfo;
+	private BasicInfoDao iBasicInfo;
 	@Autowired
-	CollegeDao iCollege;
+	private CollegeDao iCollege;
 	@Autowired
-	CourseDao iCourse;
+	private CourseDao iCourse;
 	@Autowired
-	CourseJudgeRecordsDao iCourseJudgeRecords;
+	private CourseJudgeRecordsDao iCourseJudgeRecords;
 	@Autowired
-	CourseRecordsDao iCourseRecords;
+	private CourseRecordsDao iCourseRecords;
 	@Autowired
-	DocCenterDao iDocCenter;
+	private DocCenterDao iDocCenter;
 	@Autowired
-	EduMessageDao iEduMessage;
+	private EduMessageDao iEduMessage;
 	@Autowired
-	HomeworkExamDao iHomeworkExam;
+	private HomeworkExamDao iHomeworkExam;
 	@Autowired
-	HomeworkExamScoreDao iHomeworkExamScore;
+	private HomeworkExamScoreDao iHomeworkExamScore;
 	@Autowired
-	MajorDao iMajor;
+	private MajorDao iMajor;
 	@Autowired
-	OrgDao iOrg;
+	private OrgDao iOrg;
 	@Autowired
-	RoleDao iRole;
+	private RoleDao iRole;
 	@Autowired
-	ScoreSumDao iScoreSum;
+	private ScoreSumDao iScoreSum;
 	@Autowired
-	StudyTalkingDao iStudyTalking;
+	private StudyTalkingDao iStudyTalking;
 	@Autowired
-	StudyTalkingHistoryDao iStudyTalkingHistory;
+	private StudyTalkingHistoryDao iStudyTalkingHistory;
 	@Autowired
-	SystemMessageDao iSystemMessage;
+	private SystemMessageDao iSystemMessage;
 
 	@Transactional
 	public String init() {
