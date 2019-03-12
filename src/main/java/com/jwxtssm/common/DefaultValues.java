@@ -29,10 +29,10 @@ public class DefaultValues {
 	public static final int STATE = 0;
 	public static final int FINAL_SCORE = 0;
 	public static final int PERCENT = 0;
-	public static final int MAJOR_COMPULSORY_GRADES = 0;
-	public static final int MAJOR_ELECTIVE_GRADES = 0;
-	public static final int PUBLIC_COMPULSORY_GRADES = 0;
-	public static final int PUBLIC_ELECTIVE_GRADES = 0;
+	public static final int MAJOR_COMPULSORY_GRADES = 70;
+	public static final int MAJOR_ELECTIVE_GRADES = 50;
+	public static final int PUBLIC_COMPULSORY_GRADES = 40;
+	public static final int PUBLIC_ELECTIVE_GRADES = 20;
 	public static final int MC_GRADE = 0;
 	public static final int ME_GRADE = 0;
 	public static final int PC_GRADE = 0;
