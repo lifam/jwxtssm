@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BasicInfoDao {
 	int addBasicInfo(BasicInfo basicInfo);
+	BasicInfo queryByViceId(int viceId);
 }

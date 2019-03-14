@@ -44,6 +44,11 @@ public class dataFillingController {
 		return getModelAndView(dataGenerate.generateRole());
 	}
 
+	@RequestMapping(value = "/fillScoreSum.html")
+	public ModelAndView fillScoreSum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+		return getModelAndView(dataGenerate.generateScoreSum());
+	}
+
 	private ModelAndView getModelAndView(int i) throws Exception {
 		ModelAndView mav = new ModelAndView();
 

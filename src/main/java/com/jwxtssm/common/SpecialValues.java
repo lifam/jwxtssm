@@ -21,4 +21,6 @@ public class SpecialValues {
 	public final static int ROLE_TYPE_RESEARCHER = 9;
 	public final static int ROLE_STATE_VALID = 1;
 	public final static int ROLE_STATE_INVALID = 2;
+
+	public final static String USER_ID = "basic_id";
 }

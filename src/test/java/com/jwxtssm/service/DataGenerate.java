@@ -186,4 +186,16 @@ public class DataGenerate {
 
 		return count;
 	}
+
+	@Transactional
+	public int generateScoreSum() {
+		int count = 0;
+
+		for (int i = 100502; i < 130502; i++) {
+			iScoreSum.addScoreSum(new ScoreSum(i, 0f, 0, 0f, 0, 0f, 0, 0f, 0));
+			count++;
+		}
+
+		return count;
+	}
 }

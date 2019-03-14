@@ -2,6 +2,24 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="true">
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/assets/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+
 	<!-- 如果是用mvn命令生成的xml，需要修改servlet版本为3.1 -->
 	<!-- 配置DispatcherServlet -->
 	<servlet>
@@ -19,12 +37,13 @@
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<!-- 默认匹配所有的请求 -->
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>home.jsp</welcome-file>
-	</welcome-file-list>
+
+	<!--<welcome-file-list>-->
+		<!--<welcome-file>/home</welcome-file>-->
+	<!--</welcome-file-list>-->
+
 	
 	 <!--Servlet Filters ================================================ -->
 	<!--<filter>-->
