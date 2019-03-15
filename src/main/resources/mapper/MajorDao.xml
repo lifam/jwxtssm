@@ -6,4 +6,13 @@
     <insert id="addMajor" parameterType="Major" useGeneratedKeys="true" keyProperty="majorId">
         insert into major values (null, #{collegeId}, #{type}, #{name}, #{intro}, #{majorCompulsoryGrades}, #{majorElectiveGrades}, #{publicCompulsoryGrades}, #{publicElectiveGrades});
     </insert>
+    <select id="queryById" parameterType="int" resultType="Major">
+        select * from major where major_id = #{majorId};
+    </select>
+    <select id="queryByName" parameterType="String" resultType="Major">
+        select * from major where name = #{name};
+    </select>
+    <select id="queryAll" resultType="Major">
+        select * from major where name != "defaultName";
+    </select>
 </mapper>

@@ -23,6 +23,10 @@ public class DataGenerate {
 	@Autowired
 	CollegeDao iCollege;
 	@Autowired
+	LocationInfoDao iLocationInfo;
+	@Autowired
+	TimeLocationInfoDao iTimeLocationInfo;
+	@Autowired
 	CourseDao iCourse;
 	@Autowired
 	CourseJudgeRecordsDao iCourseJudgeRecords;
@@ -101,7 +105,8 @@ public class DataGenerate {
 				weight -= 10f;
 			}
 
-			BasicInfo basicInfo = new BasicInfo(basicId, headImg, viceId, name, password, sex, height, weight, birthInfo, homeAddress, formalId, rewardInfo, punishmentInfo, infoTransparency);
+			BasicInfo basicInfo = new BasicInfo(basicId, headImg, viceId, name, password, sex, height, weight,
+					birthInfo, homeAddress, formalId, rewardInfo, punishmentInfo, infoTransparency);
 			iBasicInfo.addBasicInfo(basicInfo);
 			count++;
 		}
@@ -114,7 +119,8 @@ public class DataGenerate {
 		int count = 0;
 
 		for (int i = 1; i <= 5; i++) {
-			iAuthInfo.addAuthInfo(new AuthInfo(DefaultValues.AUTH_ID, i, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000, 0, 0)));
+			iAuthInfo.addAuthInfo(new AuthInfo(DefaultValues.AUTH_ID, i, Utils.convertYMDToDate(2000, 0, 0), Utils
+					.convertYMDToDate(3000, 0, 0)));
 			count++;
 		}
 
@@ -126,7 +132,8 @@ public class DataGenerate {
 		int count = 0;
 
 		for (int i = 0; i < 20; i++) {
-			iCollege.addCollege(new College(DefaultValues.COLLEGE_ID, "学院" + (char) ('A' + i), DefaultValues.INTRO, DefaultValues.ADDRESS));
+			iCollege.addCollege(new College(DefaultValues.COLLEGE_ID, "学院" + (char) ('A' + i), DefaultValues.INTRO,
+					DefaultValues.ADDRESS));
 			count++;
 		}
 
@@ -138,7 +145,10 @@ public class DataGenerate {
 		int count = 0;
 
 		for (int i = 0; i < 300; i++) {
-			iMajor.addMajor(new Major(DefaultValues.MAJOR_ID, i / 15 + 1, SpecialValues.MAJOR_TYPE_4_YEARS, "专业" + (char) ('A' + i / 15) + (char) ('A' + i % 15), DefaultValues.INTRO, DefaultValues.MAJOR_COMPULSORY_GRADES, DefaultValues.MAJOR_ELECTIVE_GRADES, DefaultValues.PUBLIC_COMPULSORY_GRADES, DefaultValues.PUBLIC_ELECTIVE_GRADES));
+			iMajor.addMajor(new Major(DefaultValues.MAJOR_ID, i / 15 + 1, SpecialValues.MAJOR_TYPE_4_YEARS, "专业" +
+					(char) ('A' + i / 15) + (char) ('A' + i % 15), DefaultValues.INTRO, DefaultValues
+					.MAJOR_COMPULSORY_GRADES, DefaultValues.MAJOR_ELECTIVE_GRADES, DefaultValues
+					.PUBLIC_COMPULSORY_GRADES, DefaultValues.PUBLIC_ELECTIVE_GRADES));
 			count++;
 		}
 
@@ -150,7 +160,8 @@ public class DataGenerate {
 		int count = 0;
 
 		for (int i = 0; i < 300; i++) {
-			iOrg.addOrg(new Org(DefaultValues.ORG_ID, i / 15 + 1, "机构" + (char) ('A' + i / 15) + (char) ('A' + i % 15), DefaultValues.INFO));
+			iOrg.addOrg(new Org(DefaultValues.ORG_ID, i / 15 + 1, "机构" + (char) ('A' + i / 15) + (char) ('A' + i % 15)
+					, DefaultValues.INFO));
 			count++;
 		}
 
@@ -162,25 +173,33 @@ public class DataGenerate {
 		int count = 0;
 
 		//		添加管理员身份
-		iRole.addRole(new Role(DefaultValues.ROLE_ID, 1, 3, DefaultValues.MAJOR_ID, DefaultValues.ORG_ID, DefaultValues.COLLEGE_ID, SpecialValues.ROLE_TYPE_ADMIN, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000, 0, 0), SpecialValues.ROLE_STATE_VALID));
+		iRole.addRole(new Role(DefaultValues.ROLE_ID, 1, 3, DefaultValues.MAJOR_ID, DefaultValues.ORG_ID,
+				DefaultValues.COLLEGE_ID, SpecialValues.ROLE_TYPE_ADMIN, Utils.convertYMDToDate(2000, 0, 0), Utils
+				.convertYMDToDate(3000, 0, 0), SpecialValues.ROLE_STATE_VALID));
 		count++;
 
 		//		添加学生身份
 		for (int i = 100502; i < 130502; i++) {
 			int grade = (i - 100502) / 7500;
-			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 7, i % 300 + 2, DefaultValues.ORG_ID, i % 20 + 2, SpecialValues.ROLE_TYPE_STUDENT, Utils.convertYMDToDate(2015 + grade, 9, 1), Utils.convertYMDToDate(2019 + grade, 6, 1), SpecialValues.ROLE_STATE_VALID));
+			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 7, i % 300 + 2, DefaultValues.ORG_ID, i % 20 + 2,
+					SpecialValues.ROLE_TYPE_STUDENT, Utils.convertYMDToDate(2015 + grade, 9, 1), Utils
+					.convertYMDToDate(2019 + grade, 6, 1), SpecialValues.ROLE_STATE_VALID));
 			count++;
 		}
 
 		//		添加教师身份
 		for (int i = 130502; i < 133502; i++) {
-			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 5, DefaultValues.MAJOR_ID, i % 300 + 2, i % 20 + 2, i % 5 + 5, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000, 0, 0), SpecialValues.ROLE_STATE_VALID));
+			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 5, i % 300 + 2, i % 300 + 2, i % 20 + 2, i % 5
+					+ 5, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000, 0, 0), SpecialValues
+					.ROLE_STATE_VALID));
 			count++;
 		}
 
 		//		添加教务员身份
 		for (int i = 133502; i < 134002; i++) {
-			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 4, i % 300 + 2, DefaultValues.ORG_ID, i % 20 + 2, SpecialValues.ROLE_TYPE_OFFICER, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000, 0, 0), SpecialValues.ROLE_STATE_VALID));
+			iRole.addRole(new Role(DefaultValues.ROLE_ID, i, 4, i % 300 + 2, DefaultValues.ORG_ID, i % 20 + 2,
+					SpecialValues.ROLE_TYPE_OFFICER, Utils.convertYMDToDate(2000, 0, 0), Utils.convertYMDToDate(3000,
+					0, 0), SpecialValues.ROLE_STATE_VALID));
 			count++;
 		}
 
@@ -196,6 +215,24 @@ public class DataGenerate {
 			count++;
 		}
 
+		return count;
+	}
+
+	@Transactional
+	public int generateLocationInfo() {
+		int count = 0;
+		//		4个校区
+		for (int i = 0; i < 4; i++) {
+			//			10栋教学楼
+			for (int j = 0; j < 10; j++) {
+				//				50间课室
+				for (int k = 0; k < 50; k++) {
+					iLocationInfo.addLocationInfo(new LocationInfo(DefaultValues.LOCATION_ID, "校区" + (char) ('A' + i),
+							"教学楼" + (char) ('A' + j), k + 1));
+					count++;
+				}
+			}
+		}
 		return count;
 	}
 }

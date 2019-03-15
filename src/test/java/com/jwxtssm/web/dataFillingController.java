@@ -49,13 +49,18 @@ public class dataFillingController {
 		return getModelAndView(dataGenerate.generateScoreSum());
 	}
 
+	@RequestMapping(value = "/fillLocationInfo.html")
+	public ModelAndView fillLocationInfo(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+		return getModelAndView(dataGenerate.generateLocationInfo());
+	}
+
 	private ModelAndView getModelAndView(int i) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		int count = i;
 
 		mav.addObject("msg", "成功插入了 " + count + " 条数据.");
-		mav.setViewName("test/test");
+		mav.setViewName("jsp/test/test.jsp");
 		return mav;
 	}
 }

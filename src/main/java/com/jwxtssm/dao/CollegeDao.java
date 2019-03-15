@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CollegeDao {
 	int addCollege(College college);
+	College queryById(int collegeId);
+	College queryByName(String name);
+	College[] queryAll();
 }

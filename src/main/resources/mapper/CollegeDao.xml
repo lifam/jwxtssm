@@ -6,4 +6,13 @@
     <insert id="addCollege" parameterType="College" useGeneratedKeys="true" keyProperty="collegeId">
         insert into college values (null, #{name}, #{intro}, #{address});
     </insert>
+    <select id="queryById" parameterType="int" resultType="College">
+        select * from college where college_id = #{collegeId};
+    </select>
+    <select id="queryByName" parameterType="String" resultType="College">
+        select * from college where name = #{name};
+    </select>
+    <select id="queryAll" resultType="College">
+        select * from college where name != "defaultName";
+    </select>
 </mapper>

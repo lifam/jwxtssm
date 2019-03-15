@@ -13,8 +13,6 @@ public class Course {
 	private int score;
 	//课程名称
 	private String name;
-	//上课时间&地点
-	private String timeLocation;
 	//课程介绍/说明
 	private String intro;
 	//课程开始时间
@@ -27,14 +25,13 @@ public class Course {
 	public Course() {
 	}
 
-	public Course(int courseId, int basicId, int type, int score, String name, String timeLocation, String intro, Date
+	public Course(int courseId, int basicId, int type, int score, String name, String intro, Date
 			validFrom, Date validTo, int state) {
 		this.courseId = courseId;
 		this.basicId = basicId;
 		this.type = type;
 		this.score = score;
 		this.name = name;
-		this.timeLocation = timeLocation;
 		this.intro = intro;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
@@ -81,14 +78,6 @@ public class Course {
 		this.name = name;
 	}
 
-	public String getTimeLocation() {
-		return timeLocation;
-	}
-
-	public void setTimeLocation(String timeLocation) {
-		this.timeLocation = timeLocation;
-	}
-
 	public String getIntro() {
 		return intro;
 	}
@@ -124,7 +113,7 @@ public class Course {
 	@Override
 	public String toString() {
 		return "Course{" + "courseId=" + courseId + ", basicId=" + basicId + ", type=" + type + ", score=" + score +
-				", name='" + name + '\'' + ", timeLocation='" + timeLocation + '\'' + ", intro='" + intro + '\'' + ", " +
+				", name='" + name + '\'' + ", intro='" + intro + '\'' + ", " +
 				"" + "validFrom=" + validFrom + ", validTo=" + validTo + ", state=" + state + '}';
 	}
 }

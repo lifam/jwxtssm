@@ -6,4 +6,10 @@
     <insert id="addRole" parameterType="Role" useGeneratedKeys="true" keyProperty="roleId">
         insert into role values (null, #{basicId}, #{authId}, #{majorId}, #{orgId}, #{collegeId}, #{type}, #{validFrom}, #{validTo}, #{state});
     </insert>
+    <select id="queryById" parameterType="int" resultType="Role">
+        select role_id, basic_id, auth_id, major_id, org_id, college_id, type, valid_from, valid_to, state from role where role_id = #{roleId};
+    </select>
+    <select id="queryByBasicId" parameterType="int" resultType="Role">
+        select role_id, basic_id, auth_id, major_id, org_id, college_id, type, valid_from, valid_to, state from role where basic_id = #{basicId};
+    </select>
 </mapper>

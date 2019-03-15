@@ -21,6 +21,7 @@ public class DefaultValues {
 	public static final int TALK_ID = 1;
 	public static final int HEAD_IMG = 1;
 	public static final int HOMEWORK_EXAM_ID = 1;
+	public static final int LOCATION_ID = 1;
 	public static final int SEX = 0;
 	public static final int INFO_TRANSPARENCY = 1;
 	public static final int TYPE = 1;
@@ -56,12 +57,13 @@ public class DefaultValues {
 	public static final String REWARD_INFO = "defaultRewradInfo";
 	public static final String PUNISHMENT_INFO = "defaultPunishmentInfo";
 	public static final String INFO = "defaultInfo";
-	public static final String TIME_LOCATION = "defaultTimeLocation";
 	public static final String INTRO = "defaultIntro";
 	public static final String ADDRESS = "defaultAddress";
 	public static final String CONTENT = "defaultContent";
 	public static final String DOC_ADDRESS = "defaultDocAddress";
 	public static final String TITLE = "defaultTitle";
+	public static final String CAMPUS = "defaultCampus";
+	public static final String LOCATION = "defaultLocation";
 
 	public static final Date BIRTH_INFO = new Date(0L);
 	public static final Date VALID_FROM = new Date(0L);

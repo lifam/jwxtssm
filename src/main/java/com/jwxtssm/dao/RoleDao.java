@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleDao {
 	int addRole(Role role);
+	Role queryById(int roleId);
+	Role[] queryByBasicId(int basicId);
 }

@@ -23,4 +23,6 @@ public class SpecialValues {
 	public final static int ROLE_STATE_INVALID = 2;
 
 	public final static String USER_ID = "basic_id";
+	public final static String AUTH_CODES = "auth_codes";
+	public final static String ROLES = "roles";
 }

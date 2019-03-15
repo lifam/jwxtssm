@@ -1,7 +1,7 @@
 USE jwxt;
 -- 个人基本信息
 CREATE TABLE basic_info(
-	basicId int auto_increment,
+	basic_id int auto_increment,
 	-- 头像，保存在表doc_center中
 	head_img int,
 	-- 副id，用于学生学号，教师职工号等
@@ -28,7 +28,7 @@ CREATE TABLE basic_info(
 	punishment_info varchar(1000),
 	-- 个人信息可见度，1-名字/头像，2-+学号，3-+性别，4+出生年月，5-+身高/体重
 	info_transparency int NOT NULL,
-	PRIMARY KEY(basicId)
+	PRIMARY KEY(basic_id)
 	-- FOREIGN KEY(head_img) REFERENCES doc_center(doc_id)
 ) ENGINE = InnoDB;
 
@@ -36,13 +36,13 @@ USE jwxt;
 -- 联系信息-邮箱/电话/QQ/微信/微博
 CREATE TABLE address_info(
 	address_id int auto_increment,
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 1-邮箱/2-电话/3-QQ/4-微信/5-微博
 	type int NOT NULL,
 	-- 联系信息具体值
 	info varchar(30) NOT NULL,
 	PRIMARY KEY(address_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -59,19 +59,29 @@ CREATE TABLE auth_info(
 ) ENGINE = InnoDB;
 
 USE jwxt;
+CREATE TABLE location_info(
+	location_id int auto_increment,
+	-- 校区
+	campus varchar(20)  NOT NULL,
+	-- 教学楼
+	location varchar(20) NOT NULL,
+	-- 课室号
+	room int NOT NULL,
+	PRIMARY KEY(location_id)
+) ENGINE = InnoDB;
+
+USE jwxt;
 -- 开课记录
 CREATE TABLE course(
 	course_id int auto_increment,
 	-- 开课老师
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 课程类型，1-专必MC/2-专选ME/3-公必PC/4-公选PE
 	type int NOT NULL,
 	-- 课程学分
 	score int NOT NULL,
 	-- 课程名称
 	name varchar(30) NOT NULL,
-	-- 上课时间&地点
-	time_location varchar(150) NOT NULL,
 	-- 课程介绍/说明
 	intro varchar(1000),
 	-- 课程开始时间
@@ -80,8 +90,19 @@ CREATE TABLE course(
 	valid_to date,
 	-- 状态，1-可以选课/2-停止选课/3-有效期内/4-课程失效，32th-bit：已审核/未审核，31th-bit：锁定/未锁定
 	state int NOT NULL,
-	PRIMARY KEY(course_id, basicId),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	PRIMARY KEY(course_id, basic_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
+) ENGINE = InnoDB;
+
+USE jwxt;
+CREATE TABLE time_location_info(
+	location_id int NOT NULL,
+	course_id int NOT NULL,
+	-- 周次/星期/节次, 1~20/0~6/1~10
+	time int NOT NULL,
+	PRIMARY KEY (location_id, course_id, time),
+	FOREIGN KEY (location_id) REFERENCES location_info(location_id),
+	FOREIGN KEY (course_id) REFERENCES course(course_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -99,8 +120,8 @@ CREATE TABLE course_jugde_records(
 	state int NOT NULL,
 	PRIMARY KEY(course_id, basic_id_te, basic_id_st, state),
 	FOREIGN KEY(course_id) REFERENCES course(course_id),
-	FOREIGN KEY(basic_id_te) REFERENCES basic_info(basicId),
-	FOREIGN KEY(basic_id_st) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id_te) REFERENCES basic_info(basic_id),
+	FOREIGN KEY(basic_id_st) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -109,14 +130,14 @@ CREATE TABLE course_records(
 	-- 课程id
 	course_id int NOT NULL,
 	-- 学生id
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 最终成绩
 	final_score int,
 	-- 状态，1-正常/2-缓考/3-重考1/4-重考2/5-重考3/6-评教，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	state int NOT NULL,
-	PRIMARY KEY(course_id, basicId, state),
+	PRIMARY KEY(course_id, basic_id, state),
 	FOREIGN KEY(course_id) REFERENCES course(course_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -140,16 +161,16 @@ USE jwxt;
 CREATE TABLE homework_exam_score(
 	homework_exam_id int NOT NULL,
 	-- 学生id
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 作业/考试成绩
 	score int,
 	-- 评分说明
 	info varchar(20),
 	-- 状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	state int,
-	PRIMARY KEY(homework_exam_id, basicId),
+	PRIMARY KEY(homework_exam_id, basic_id),
 	FOREIGN KEY(homework_exam_id) REFERENCES homework_exam(homework_exam_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -207,12 +228,12 @@ USE jwxt;
 -- 角色
 CREATE TABLE role(
 	role_id int auto_increment,
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	auth_id int NOT NULL,
 	major_id int NOT NULL,
 	org_id int NOT NULL,
 	college_id int NOT NULL,
-	-- 角色类型，1-管理员/2-教务员/4-助教/5-学生/6-教授/7-副教授/8-高级讲师/9-讲师/10-特聘研究员
+	-- 角色类型，1-管理员/2-教务员/3-助教/4-学生/5-教授/6-副教授/7-高级讲师/8-讲师/9-特聘研究员
 	type int NOT NULL,
 	-- 生效日期
 	valid_from date NOT NULL,
@@ -221,7 +242,7 @@ CREATE TABLE role(
 	-- 状态，1-正常/2-冻结
 	state int NOT NULL,
 	PRIMARY KEY(role_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id),
 	FOREIGN KEY(auth_id) REFERENCES auth_info(auth_id),
 	FOREIGN KEY(major_id) REFERENCES major(major_id),
 	FOREIGN KEY(org_id) REFERENCES org(org_id),
@@ -232,7 +253,7 @@ USE jwxt;
 -- 学分概况
 CREATE TABLE score_sum(
 	-- 学生id
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 专必绩点
 	mc_score float NOT NULL,
 	-- 专必学分
@@ -249,8 +270,8 @@ CREATE TABLE score_sum(
 	pe_score float NOT NULL,
 	-- 公选学分
 	pe_grade int NOT NULL,
-	PRIMARY KEY(basicId),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	PRIMARY KEY(basic_id),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -258,7 +279,7 @@ USE jwxt;
 CREATE TABLE system_message(
 	system_message_id int auto_increment,
 	-- 通知对象
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 通知类型，1-教务通知/2-课程通知(作业发布/成绩发布等)/3-课内讨论(被@时通知)
 	type int NOT NULL,
 	-- 通知内容
@@ -270,7 +291,7 @@ CREATE TABLE system_message(
 	-- 通知状态，1-未读/2-已读/3-无效
 	state int NOT NULL,
 	PRIMARY KEY(system_message_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -278,7 +299,7 @@ USE jwxt;
 CREATE TABLE doc_center(
 	doc_id int auto_increment,
 	-- 文件所属人id
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 状态，1-可用/2-不可用
 	state int NOT NULL,
 	-- 文件本地地址
@@ -288,7 +309,7 @@ CREATE TABLE doc_center(
 	-- 上传日期
 	publish_date date NOT NULL,
 	PRIMARY KEY(doc_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId)
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
 
 USE jwxt;
@@ -307,7 +328,7 @@ USE jwxt;
 CREATE TABLE edu_message(
 	edu_message_id int auto_increment,
 	-- 教务员id
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 附件
 	attach_doc_id int,
 	-- 标题
@@ -323,7 +344,7 @@ CREATE TABLE edu_message(
 	-- 优先级，1<2<3<...
 	priority int NOT NULL,
 	PRIMARY KEY(edu_message_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id),
 	FOREIGN KEY(attach_doc_id) REFERENCES attach_doc(attach_doc_id)
 ) ENGINE = InnoDB;
 
@@ -333,7 +354,7 @@ CREATE TABLE study_talking(
 	-- 话题id
 	talk_id int auto_increment,
 	-- 话题发起人
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 课程id
 	course_id int NOT NULL,
 	-- 附件
@@ -351,7 +372,7 @@ CREATE TABLE study_talking(
 	-- 讨论记录数
 	history_count int NOT NULL,
 	PRIMARY KEY(talk_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id),
 	FOREIGN KEY(course_id) REFERENCES course(course_id),
 	FOREIGN KEY(attach_doc_id) REFERENCES attach_doc(attach_doc_id)
 ) ENGINE = InnoDB;
@@ -363,7 +384,7 @@ CREATE TABLE study_talking_history(
 	-- 所属话题id
 	talk_id int NOT NULL,
 	-- 发表人
-	basicId int NOT NULL,
+	basic_id int NOT NULL,
 	-- 课程id
 	course_id int NOT NULL,
 	-- 讨论内容
@@ -378,6 +399,6 @@ CREATE TABLE study_talking_history(
 	state int NOT NULL,
 	PRIMARY KEY(message_id),
 	FOREIGN KEY(talk_id) REFERENCES study_talking(talk_id),
-	FOREIGN KEY(basicId) REFERENCES basic_info(basicId),
+	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id),
 	FOREIGN KEY(course_id) REFERENCES course(course_id)
 ) ENGINE = InnoDB;

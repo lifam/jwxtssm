@@ -84,16 +84,16 @@
 
             $.ajax({
                 type: "POST",
-                url: "/college",
+                url: "/major",
                 dataType: "json",
                 async: "true",
                 success: function (data) {
                     data = eval(data);
-                    // $("#debug").text(data["collegeNames"]);
-                    for (i in data["collegeNames"]) {
-                        // data["collegeNames"][i];
-                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-users\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["collegeNames"][i] + "</a></div></div></div></div></div></div></div></div>";
-                        $("#college").append(newDiv);
+                    // $("#debug").text(data["majorNames"]);
+                    for (i in data["majorNames"]) {
+                        // data["majorNames"][i];
+                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-users\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["majorNames"][i] + "</a></div></div></div></div></div></div></div></div>";
+                        $("#major").append(newDiv);
                     }
                 }
             });
@@ -302,7 +302,7 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
-            <div id="college" class="row">
+            <div id="major" class="row">
                 <!--  <div class="col-lg-3 col-md-6">
                      <div class="card teaching-notification">
                          <div class="card-body">

@@ -6,4 +6,13 @@
     <insert id="addOrg" parameterType="Org" useGeneratedKeys="true" keyProperty="orgId">
         insert into org values (null, #{collegeId}, #{name}, #{info});
     </insert>
+    <select id="queryById" parameterType="int" resultType="Org">
+        select * from org where org_id = #{orgId};
+    </select>
+    <select id="queryByName" parameterType="String" resultType="Org">
+        select * from org where name = #{name};
+    </select>
+    <select id="queryAll" resultType="Org">
+        select * from org where name != "defaultName";
+    </select>
 </mapper>

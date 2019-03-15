@@ -84,16 +84,16 @@
 
             $.ajax({
                 type: "POST",
-                url: "/college",
+                url: "/org",
                 dataType: "json",
                 async: "true",
                 success: function (data) {
                     data = eval(data);
-                    // $("#debug").text(data["collegeNames"]);
-                    for (i in data["collegeNames"]) {
-                        // data["collegeNames"][i];
-                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-users\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["collegeNames"][i] + "</a></div></div></div></div></div></div></div></div>";
-                        $("#college").append(newDiv);
+                    // $("#debug").text(data["orgNames"]);
+                    for (i in data["orgNames"]) {
+                        // data["orgNames"][i];
+                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-browser\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["orgNames"][i] + "</a></div></div></div></div></div></div></div></div>";
+                        $("#org").append(newDiv);
                     }
                 }
             });
@@ -302,7 +302,7 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
-            <div id="college" class="row">
+            <div id="org" class="row">
                 <!--  <div class="col-lg-3 col-md-6">
                      <div class="card teaching-notification">
                          <div class="card-body">
@@ -329,7 +329,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">456</div>
+                                        <div class="stat-text"><a href="#">456</a></div>
                                     </div>
                                 </div>
                             </div>

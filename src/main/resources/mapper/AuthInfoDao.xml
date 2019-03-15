@@ -6,4 +6,7 @@
     <insert id="addAuthInfo" parameterType="AuthInfo" useGeneratedKeys="true" keyProperty="authId">
         insert into auth_info values (null, #{authCode}, #{validFrom}, #{validTo});
     </insert>
+    <select id="queryById" resultType="AuthInfo" parameterType="int">
+        select * from auth_info where auth_id = #{authId};
+    </select>
 </mapper>

@@ -50,7 +50,7 @@ public class DefaultPojo {
 
 	public static Course getDefaultCourse() {
 		return new Course(DefaultValues.COURSE_ID, DefaultValues.BASIC_ID, DefaultValues.TYPE, DefaultValues.SCORE,
-				DefaultValues.NAME, DefaultValues.TIME_LOCATION, DefaultValues.INTRO, DefaultValues.VALID_FROM,
+				DefaultValues.NAME, DefaultValues.INTRO, DefaultValues.VALID_FROM,
 				DefaultValues.VALID_TO, DefaultValues.STATE);
 	}
 

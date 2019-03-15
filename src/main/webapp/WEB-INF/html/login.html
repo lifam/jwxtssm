@@ -40,14 +40,16 @@
                     url: "/login",
                     dataType: "json",
                     async: "false",
-                    data: {userId: $("#userId").val(), password: $("#password").val()}, success: function (data) {
+                    data: {userId: $("#userId").val(), password: $("#password").val()},
+                    success: function (data) {
                         data = eval(data);
-                        if (data["state"] == "success")  window.location.replace("/home");
-                        else {
+                        if (data["state"] == "success") {
+                            // $("#loginInfo").text(data["authCodes"]);
+                            window.location.replace("/home");
+                        } else {
                             txt = data["state"] + ", " + data["message"];
                             $("#loginInfo").text(txt);
                         }
-                        // if (data[""])
                     }
                 });
             });

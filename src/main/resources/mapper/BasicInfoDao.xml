@@ -6,8 +6,10 @@
     <insert id="addBasicInfo" parameterType="BasicInfo" useGeneratedKeys="true" keyProperty="basicId">
         insert into basic_info values (null, #{headImg}, #{viceId}, #{name}, #{password}, #{sex}, #{height}, #{weight}, #{birthInfo}, #{homeAddress}, #{formalId}, #{rewardInfo}, #{punishmentInfo}, #{infoTransparency});
     </insert>
-
     <select id="queryByViceId" parameterType="int" resultType="BasicInfo">
       select basic_id, head_img, vice_id, name, password, sex, height, weight, birth_info, home_address, formal_id, reward_info, punishment_info, info_transparency from basic_info where vice_id = #{viceId};
+    </select>
+    <select id="queryById" parameterType="int" resultType="BasicInfo">
+      select basic_id, head_img, vice_id, name, password, sex, height, weight, birth_info, home_address, formal_id, reward_info, punishment_info, info_transparency from basic_info where basic_id = #{basicId};
     </select>
 </mapper>
