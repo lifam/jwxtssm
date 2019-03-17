@@ -22,13 +22,12 @@ public class MajorController {
 
 	@RequestMapping(value = "/major", method = RequestMethod.GET)
 	public String getQueryMajor() {
-		return "html/major.html";
+		return "WEB-INF/html/major.html";
 	}
 
 	@RequestMapping(value = "/major", method = RequestMethod.POST)
 	@ResponseBody
-	public JSON getQueryMajor(HttpServletRequest httpServletRequest) {
-		HttpSession session = httpServletRequest.getSession();
+	public JSON postQueryMajor(HttpSession session) {
 		Map<String, Object> resultMap = new TreeMap<>();
 		MajorQueryExecution majorQueryExecution = majorService.queryAll();
 		resultMap.put("majorNames", majorQueryExecution.getMajorNames());

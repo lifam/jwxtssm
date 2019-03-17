@@ -1,0 +1,1 @@
+出了点问题，“jwxtssm\out\artifacts\jwxt_ssm_war_exploded\WEB-INF”这个路径下还需要手动创建docs\headImg和docs\other两个文件夹，因为自己还不太会配置这些东西，暂时就只能这样了。

@@ -303,7 +303,7 @@ CREATE TABLE doc_center(
 	-- 状态，1-可用/2-不可用
 	state int NOT NULL,
 	-- 文件本地地址
-	docAddress varchar(300) NOT NULL,
+	doc_address varchar(300) NOT NULL,
 	-- 文件类型，1-其它文件/2-头像
 	type int NOT NULL,
 	-- 上传日期

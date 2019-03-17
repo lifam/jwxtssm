@@ -22,13 +22,12 @@ public class OrgController {
 
 	@RequestMapping(value = "/org", method = RequestMethod.GET)
 	public String getQueryMajor() {
-		return "html/org.html";
+		return "WEB-INF/html/org.html";
 	}
 
 	@RequestMapping(value = "/org", method = RequestMethod.POST)
 	@ResponseBody
-	public JSON getQueryMajor(HttpServletRequest httpServletRequest) {
-		HttpSession session = httpServletRequest.getSession();
+	public JSON postQueryMajor(HttpSession session) {
 		Map<String, Object> resultMap = new TreeMap<>();
 		OrgQueryExecution orgQueryExecution = orgService.queryAll();
 		resultMap.put("orgNames", orgQueryExecution.getOrgNames());

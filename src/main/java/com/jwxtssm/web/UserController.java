@@ -6,6 +6,7 @@ import com.jwxtssm.common.SpecialValues;
 import com.jwxtssm.common.Utils;
 import com.jwxtssm.dto.Result;
 import com.jwxtssm.dto.UserLoginExecution;
+import com.jwxtssm.service.impl.DefaultService;
 import com.jwxtssm.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,18 +25,18 @@ import java.util.TreeMap;
 public class UserController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	DefaultService defaultService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String getLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-//		Utils.clearCookie(httpServletResponse);
-//		httpServletRequest.getSession().invalidate();
-		return "html/login.html";
+	public String getLogin() {
+		return "WEB-INF/html/login.html";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public JSON postLogin(String userId, String password, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-		Utils.clearCookie(httpServletResponse);
+	public JSON postLogin(String userId, String password, HttpSession session, HttpServletResponse httpServletResponse) {
+		Utils.clearCookie(httpServletResponse, "set");
 		Map<String, Object> resultMap = new TreeMap<>();
 		if (userId == null || password == null) {
 			resultMap.put("state", "fail");
@@ -45,11 +46,12 @@ public class UserController {
 			try {
 				Result<UserLoginExecution> result = userService.login(userId, password);
 				if (result.isSuccess()) {
-					HttpSession session = httpServletRequest.getSession();
 					session.setAttribute(SpecialValues.USER_ID, result.getData().getBasicId());
 					session.setAttribute(SpecialValues.AUTH_CODES, result.getData().getAuthCodes());
 					session.setAttribute(SpecialValues.ROLES, result.getData().getRoles());
 					resultMap.put("state", "success");
+					Utils.clearCookie(httpServletResponse, "headImg");
+					Utils.setSessionAttribute(session, "headImg", defaultService.getHeadImgByBasicId(result.getData().getBasicId()));
 				} else {
 					resultMap.put("state", "fail");
 					resultMap.put("message", result.getError());
@@ -69,9 +71,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String getLogout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-		Utils.clearCookie(httpServletResponse);
-		httpServletRequest.getSession().invalidate();
-		return "html/home.html";
+	public String getLogout(HttpSession session, HttpServletResponse httpServletResponse) {
+		Utils.clearCookie(httpServletResponse, "set");
+		Utils.clearCookie(httpServletResponse, "headImg");
+		session.invalidate();
+		return "redirect:/home";
 	}
 }

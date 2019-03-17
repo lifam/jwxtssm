@@ -8,4 +8,5 @@ public interface BasicInfoDao {
 	int addBasicInfo(BasicInfo basicInfo);
 	BasicInfo queryByViceId(int viceId);
 	BasicInfo queryById(int basicId);
+	int updateHeadImg(BasicInfo basicInfo);
 }

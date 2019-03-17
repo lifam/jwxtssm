@@ -30,58 +30,10 @@
 
     <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="assets/js/sideBarCookieCache.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#clearCookies").click(function () {
-                $.cookie("set", null);
-                $.cookie("state", null);
-                $.cookie("authCodes", null);
-            });
-
-            if ($.cookie("set") != "true") {
-                $.ajax({
-                    type: "POST",
-                    url: "/home",
-                    dataType: "json",
-                    async: "true",
-                    success: function (data) {
-                        data = eval(data);
-                        // $("#debug").text(data);
-                        if (data["state"] == "success") {
-                            $("#login").hide();
-                            $("#logout").show();
-                            txt = "";
-                            for (i in data["authCodes"]) {
-                                if (data["authCodes"][i] == 1) $(".admin").show();
-                                else if (data["authCodes"][i] == 2) $(".officer").show();
-                                else if (data["authCodes"][i] == 3) $(".teacher").show();
-                                else if (data["authCodes"][i] == 4) $(".teacher-assist").show();
-                                else if (data["authCodes"][i] == 5) $(".student").show();
-
-                                txt += data["authCodes"][i] + ','
-                            }
-                            $.cookie("authCodes", txt, {path:"/"});
-                        }
-                        $.cookie("set", "true", {path:"/"});
-                        $.cookie("state", data["state"], {path:"/"});
-                    }
-                });
-            } else {
-                if ($.cookie("state") == "success") {
-                    $("#login").hide();
-                    $("#logout").show();
-                    authCodes = $.cookie("authCodes").split(',');
-                    for (i in authCodes) {
-                        if (authCodes[i] == '1') $(".admin").show();
-                        else if (authCodes[i] == '2') $(".officer").show();
-                        else if (authCodes[i] == '3') $(".teacher").show();
-                        else if (authCodes[i] == '4') $(".teacher-assist").show();
-                        else if (authCodes[i] == '5') $(".student").show();
-                    }
-                }
-            }
-
             $.ajax({
                 type: "POST",
                 url: "/college",
@@ -283,11 +235,11 @@
 
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img id="headImg" class="user-avatar rounded-circle" src="images/defaultHeadImg.jpg" alt="User Avatar">
+                        <img id="headImg" class="user-avatar rounded-circle">
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>个人中心</a>
+                        <a id="personalPage" class="nav-link" href="/personalPage" style="display: none"><i class="fa fa- user"></i>个人中心</a>
                         <a id="login" class="nav-link" href="/login"><i class="fa -off"></i>登陆</a>
                         <a id="logout" class="nav-link" href="/logout" style="display: none"><i class="fa -off"></i>退出</a>
                     </div>

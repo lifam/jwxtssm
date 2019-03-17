@@ -37,19 +37,19 @@ public class UserService implements IUserService {
 		logger.info("用户(viceId = " + viceId + ") 尝试登陆");
 		BasicInfo basicInfo = basicInfoDao.queryByViceId(viceId);
 		if (basicInfo == null) {
-			logger.info("用户(viceId = " + viceId + ") 不存在，登陆失败");
+			logger.info("用户(viceId = " + viceId + ") 不存在,登陆失败");
 			return new Result<>(false, "用户id(学号/职工号)不存在!");
 		} else {
 			try {
 				if (!basicInfo.getPassword().equals(Utils.generateSHA256Digest(password))) {
-					logger.info("用户(viceId = " + viceId + ") 密码不正确，登陆失败");
+					logger.info("用户(viceId = " + viceId + ") 密码不正确,登陆失败");
 					return new Result<>(false, "用户密码不正确!");
 				}
 			} catch (UnsupportedEncodingException e) {
 				logger.info("用户(viceId = " + viceId + ") 密码校验中抛出 UnsupportedEncodingException 异常");
 			}
 			Role[] roles = roleDao.queryByBasicId(basicInfo.getBasicId());
-//			for (Role role: roles) System.out.println(role);
+			//          for (Role role: roles) System.out.println(role);
 			Set<Integer> authCodeSet = new TreeSet<>();
 			List<Role> validRoles = new ArrayList<>();
 			for (int i = 0; i < roles.length; i++) {

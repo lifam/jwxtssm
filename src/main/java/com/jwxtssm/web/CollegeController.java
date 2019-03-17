@@ -23,8 +23,7 @@ public class CollegeController {
 
 	@RequestMapping(value = "/college", method = RequestMethod.POST)
 	@ResponseBody
-	public JSON getQueryCollege(HttpServletRequest httpServletRequest) {
-		HttpSession session = httpServletRequest.getSession();
+	public JSON postQueryCollege(HttpSession session) {
 		Map<String, Object> resultMap = new TreeMap<>();
 		CollegeQueryExecution collegeQueryExecution = collegeService.queryAll();
 		resultMap.put("collegeNames", collegeQueryExecution.getCollegeNames());

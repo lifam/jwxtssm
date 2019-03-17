@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>jwxt major</title>
+    <title>jwxt 文件上传</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,22 +34,107 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $.ajax({
-                type: "POST",
-                url: "/major",
-                dataType: "json",
-                async: "true",
-                success: function (data) {
-                    data = eval(data);
-                    // $("#debug").text(data["majorNames"]);
-                    for (i in data["majorNames"]) {
-                        // data["majorNames"][i];
-                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-users\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["majorNames"][i] + "</a></div></div></div></div></div></div></div></div>";
-                        $("#major").append(newDiv);
+            $("#multiFileAddMoreBtn").click(function () {
+                var fileSelector = "<hr class=\"needToBeClear\"><div class=\"row form-group needToBeClear\"><div class=\"col col-md-4\"></div><div class=\"col-12 col-md-8\"><input type=\"file\" multiple=\"\" class=\"form-control-file multiFileUpload \" onchange=\"multiFileUploadChecker(this)\" name=\"file-multiple-input\"><small class=\"form-text text-muted\">可以同时选中多个文件上传</small></div></div>";
+                $("#addMoreFileSelectorBefore").before(fileSelector);
+            });
+
+            $("#multiFileClearBtn").click(function () {
+                $(".fileInfo").remove();
+                $(".needToBeClear").remove();
+                $("#addMoreFileInfoBefore").hide();
+                document.getElementById("firstMultiFileSelector").value = "";
+                document.getElementById("firstMultiFileSelector").removeAttribute("disabled");
+            });
+
+
+            var imgInputFile = document.getElementById('imgInput');
+            imgInputFile.addEventListener('change', function() {
+                if (imgInputFile.value) {
+                    var file = imgInputFile.files[0];
+                    var infoText = "<p>图像名：" + file.name + "</p>";
+                    infoText += "<p>图像大小：" + file.size + " 字节</p>";
+                    infoText += "<p>修改时间：" + file.lastModifiedDate + "</p>";
+                    $("#imgInfoTextArea").children().remove();
+                    $("#imgInfoTextArea").append(infoText);
+
+                    if (file.type !== "image/jpeg" && file.type !== "image/png" && file.type !== "image/gif") {
+                        $(".imgInfo").hide();
+                        alert("不是有效的图片文件!");
+                        imgInputFile.value = "";
+                        return;
                     }
+
+                    if (file.size > 512 * 1024) {
+                        $(".imgInfo").hide();
+                        alert("图片大小不能超过 512 KB！")
+                        imgInputFile.value = "";
+                        return;
+                    }
+
+                    // 读取文件:
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var data = e.target.result;
+                        document.getElementById('imgShowArea').style.backgroundImage = 'url(' + data + ')';
+                        $(".imgInfo").show();
+                    };
+                    // 以DataURL的形式读取文件:
+                    reader.readAsDataURL(file);
                 }
             });
+
+            $("#imgClearBtn").click(function () {
+                $(".imgInfo").hide();
+                imgInputFile.value = "";
+            });
         });
+
+        function checkImgUploadForm() {
+            var imgInputFile = document.getElementById('imgInput');
+            if (imgInputFile.value == "") {
+                alert("请先选择一个图片文件！");
+                return false;
+            }
+            return true;
+        }
+
+        function checkUploadFilesForm() {
+            var result = false;
+            for (var fileSelector of document.getElementsByClassName("multiFileUpload")) {
+                if (fileSelector.value) {
+                    result = true;
+                    fileSelector.removeAttribute("disabled");
+                }
+            }
+            if (!result) {
+                alert("请先选择至少一个文件！");
+                return false;
+            }
+            return true;
+        }
+
+        function multiFileUploadChecker(multiFileInput) {
+            if (multiFileInput.value) {
+                for (var file of multiFileInput.files) {
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert("单个文件不能大于 10 MB！");
+                        multiFileInput.value = "";
+                        return;
+                    }
+                }
+
+                for (var file of multiFileInput.files) {
+                    // var file = multiFileInput.files[i];
+                    var fileInfoBoxText = "<div class=\"row form-group fileInfo\" style=\"display: none\"><div class=\"col fileInfoBox\"><p>文件名：" + file.name + "</p>" + "<p>文件大小：" + file.size + " 字节</p>" + "<p>修改时间：" + file.lastModifiedDate + "</p></div></div>";
+
+                    $("#addMoreFileInfoBefore").before(fileInfoBoxText);
+                }
+                $(".fileInfo").show();
+                $("#addMoreFileInfoBefore").show();
+                multiFileInput.setAttribute("disabled", true);
+            }
+        }
     </script>
 
     <style>
@@ -254,40 +339,104 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
-            <div id="major" class="row">
-                <!--  <div class="col-lg-3 col-md-6">
-                     <div class="card teaching-notification">
-                         <div class="card-body">
-                             <div class="stat-widget-five">
-                                 <div class="stat-icon dib flat-color-3">
-                                     <i class="pe-7s-browser"></i>
-                                 </div>
-                                 <div class="stat-content">
-                                     <div class="text-left dib">
-                                         <div class="stat-text">123</div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div> -->
+            <div class="ui-typography">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>上传文件</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="pills-docs-tab" data-toggle="pill" href="#pills-docs" role="tab" aria-controls="pills-docs" aria-selected="true">文件</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-headImg-tab" data-toggle="pill" href="#pills-headImg" role="tab" aria-controls="pills-headImg" aria-selected="false">头像</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane show active" id="pills-docs" role="tabpanel" aria-labelledby="pills-docs-tab">
+                                        <h3>上传文件</h3>
+                                        <hr>
+                                        <form onsubmit="return checkUploadFilesForm()" action="/uploadFiles" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <!-- <div class="row form-group fileInfo" style="display: none">
+                                                <div class="col fileInfoBox"></div>
+                                            </div> -->
+                                            <hr id="addMoreFileInfoBefore" style="display: none">
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"></div>
+                                                <div class="col col-md-3"><label class="form-control-label">上传多个文件</label></div>
+                                                <div class="col-12 col-md-8"><input id="firstMultiFileSelector" type="file" name="file-multiple-input" multiple="" class="form-control-file multiFileUpload" onchange="multiFileUploadChecker(this)"><small class="form-text text-muted">可以同时选中多个文件上传</small></div>
+                                            </div>
+                                            <!-- <hr class="needToBeClear">
+                                            <div class="row form-group needToBeClear">
+                                                <div class="col col-md-4"></div>
+                                                <div class="col-12 col-md-8"><input type="file" multiple="" class="form-control-file multiFileUpload" onchange="multiFileUploadChecker()"><small class="form-text text-muted">可以同时选中多个文件上传</small></div>
+                                            </div> -->
+                                            <hr id="addMoreFileSelectorBefore">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                </div>
+                                                <div class="col col-md-2">
+                                                    <button id="multiFileAddMoreBtn" type="button" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> 继续添加
+                                                    </button>
+                                                </div>
+                                                <div class="col col-md-2">
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> 上传文件
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button id="multiFileClearBtn" type="button" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-ban"></i> 清空
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="pills-headImg" role="tabpanel" aria-labelledby="pills-headImg-tab">
+                                        <h3>上传头像</h3>
+                                        <hr>
+                                        <form onsubmit="return checkImgUploadForm()" action="/updateHeadImg" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <div class="row form-group imgInfo" style="display: none">
+                                                <!-- <div class="col"><img id="imgShowArea" src="" style="width: 100px; height: 100px"></div> -->
+                                                <div id="imgShowArea" class="col" style="border: 1px solid #ccc; width: 100%; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+                                            </div>
+                                            <hr class="imgInfo" style="display: none">
+                                            <div class="row form-group imgInfo" style="display: none">
+                                                <div id="imgInfoTextArea" class="col"></div>
+                                            </div>
+                                            <hr class="imgInfo" style="display: none">
 
-                <!-- <div class="col-lg-3 col-md-6">
-                    <div class="card people">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-4">
-                                    <i class="pe-7s-users"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text">456</div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"></div>
+                                                <div class="col col-md-4"><label for="file-single-input" class="form-control-label">上传一张图片作为头像</label></div>
+                                                <div class="col-12 col-md-7"><input id="imgInput" type="file" id="file-single-input" name="file-single-input" class="form-control-file"><small class="form-text text-muted">只能选择一个文件上传，上传后替换原来的头像</small></div>
+                                            </div>
+                                            <hr>
+                                            <div class="row form-group">
+                                                <div class="col col-md-4">
+                                                </div>
+                                                <div class="col col-md-2">
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-dot-circle-o"></i> 上传
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button id="imgClearBtn" type="button" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-ban"></i> 清空
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <!-- /Widgets -->
             <!-- Calender -->
