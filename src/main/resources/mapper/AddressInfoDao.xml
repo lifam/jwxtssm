@@ -4,12 +4,12 @@
 
 <mapper namespace="com.jwxtssm.dao.AddressInfoDao">
     <insert id="addAddressInfo" parameterType="AddressInfo" useGeneratedKeys="true" keyProperty="addressId">
-        insert into address_info values (null, #{basicId}, #{types}, #{infoes});
+        insert into address_info values (null, #{basicId}, #{type}, #{info});
     </insert>
     <select id="queryById" parameterType="int" resultType="AddressInfo">
-        select address_id, basic_id, types, infoes from address_info where address_id = #{addressId};
+        select address_id, basic_id, type, info from address_info where address_id = #{addressId};
     </select>
     <select id="queryByBasicId" parameterType="int" resultType="AddressInfo">
-        select address_id, basic_id, types, infoes from address_info where basic_id = #{basicId};
+        select address_id, basic_id, type, info from address_info where basic_id = #{basicId};
     </select>
 </mapper>

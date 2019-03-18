@@ -27,16 +27,16 @@
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' types='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-    <script types="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 
-    <script types="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#btn").click(function () {
                 // $("#test").text("kfkfeakfkefweaf");
                 $.ajax({
-                    types: "POST",
+                    type: "POST",
                     url: "/login",
                     dataType: "json",
                     async: "false",
@@ -56,7 +56,7 @@
         });
     </script>
 
-    <!-- <script types="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
 <body class="bg-dark">
 
@@ -72,16 +72,16 @@
                 <form>
                     <div class="form-group">
                         <label>用户ID(学号/职工号)</label>
-                        <input id="userId" types="email" class="form-control" placeholder="请输入ID">
+                        <input id="userId" type="email" class="form-control" placeholder="请输入ID">
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input id="password" types="password" class="form-control" placeholder="请输入密码">
+                        <input id="password" type="password" class="form-control" placeholder="请输入密码">
                     </div>
                     <div class="form-group">
                         <label id="loginInfo"></label>
                     </div>
-                    <button id="btn" types="button" class="btn btn-success btn-flat m-b-30 m-t-30">登陆</button>
+                    <button id="btn" type="button" class="btn btn-success btn-flat m-b-30 m-t-30">登陆</button>
                 </form>
             </div>
         </div>

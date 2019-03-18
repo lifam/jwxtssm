@@ -86,7 +86,7 @@ public class UserService implements IUserService {
 		String[] types = new String[addressInfos.length];
 		String[] infos = new String[addressInfos.length];
 		for (int i = 0; i < addressInfos.length; i++) {
-			//			switch (addressInfos[i].getTypes()) {
+			//			switch (addressInfos[i].getType()) {
 			//				case 1:
 			//
 			//					break;

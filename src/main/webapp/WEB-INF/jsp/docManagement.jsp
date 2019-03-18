@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <script types="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
@@ -35,8 +35,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-    <script types="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-    <script types="text/javascript" src="assets/js/sideBarCookieCache.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/sideBarCookieCache.js"></script>
 
 
 
@@ -201,20 +201,20 @@
                     <button class="search-trigger"><i class="fa fa-search"></i></button>
                     <div class="form-inline">
                         <form class="search-form">
-                            <input class="form-control mr-sm-2" types="text" placeholder="搜索 ..." aria-label="Search">
-                            <button class="search-close" types="submit"><i class="fa fa-close"></i></button>
+                            <input class="form-control mr-sm-2" type="text" placeholder="搜索 ..." aria-label="Search">
+                            <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
 
                     <div class="dropdown for-notification">
-                        <button class="btn btn-secondary dropdown-toggle" types="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="count bg-danger">0</span>
                         </button>
                     </div>
 
                     <div class="dropdown for-message">
-                        <button class="btn btn-secondary dropdown-toggle" types="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope"></i>
                             <span class="count bg-primary">0</span>
                         </button>
@@ -266,9 +266,9 @@
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <button types="button" class="btn btn-danger btn-sm"><a style="color: black" href="">删除</a></button>
-                                        <button types="button" class="btn btn-primary btn-sm"><a style="color: black" href="">重命名</a></button>
-                                        <button types="button" class="btn btn-success btn-sm"><a style="color: black" href="">下载</a></button>
+                                        <button type="button" class="btn btn-danger btn-sm"><a style="color: black" href="">删除</a></button>
+                                        <button type="button" class="btn btn-primary btn-sm"><a style="color: black" href="">重命名</a></button>
+                                        <button type="button" class="btn btn-success btn-sm"><a style="color: black" href="">下载</a></button>
                                     </td>
                                 </tr> -->
                                     <%
@@ -283,9 +283,9 @@
                                             txt += docSizes[i];
                                             txt += "</td><td>";
                                             txt += publishDates[i];
-                                            txt += "</td><td><button types=\"button\" class=\"btn btn-danger btn-sm\"><a style=\"color: black\" href=\"";
+                                            txt += "</td><td><button type=\"button\" class=\"btn btn-danger btn-sm\"><a style=\"color: black\" href=\"";
                                             txt += "/deleteUploadFiles?docId=" + docIds[i];
-                                            txt += "\">删除</a></button><button types=\"button\" class=\"btn btn-success btn-sm\"><a style=\"color: black\" href=\"";
+                                            txt += "\">删除</a></button><button type=\"button\" class=\"btn btn-success btn-sm\"><a style=\"color: black\" href=\"";
                                             txt += "/downloadUploadFiles?docId=" + docIds[i];
                                             txt += "\">下载</a></button></td></tr>";
                                             out.print(txt);

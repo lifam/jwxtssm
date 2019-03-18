@@ -61,17 +61,17 @@
                     data = eval(data);
                     if (data["state"] == "success") {
                         $("#user-head-img").attr("src", "/getHeadImg?no-cache-value=" + Math.random());
-                        $("#user-name").text("name");
-                        $("#user-vice-id").text("viceId");
-                        $("#user-sex").text("sex");
-                        $("#user-height").text("height");
-                        $("#user-weight").text("weight");
-                        $("#user-birth-info").text("birthInfo");
-                        $("#user-home-address").text("homeAddress");
-                        $("#user-formal-id").text("formalId");
-                        $("#user-info-transparency").text("rewardInfo");
-                        $("#user-reward-info").text("punishmentInfo");
-                        $("#user-punishment-info").text("infoTransparency");
+                        $("#user-name").text(data["name"]);
+                        $("#user-vice-id").text(data["viceId"]);
+                        $("#user-sex").text(data["sex"]);
+                        $("#user-height").text(data["height"]);
+                        $("#user-weight").text(data["weight"]);
+                        $("#user-birth-info").text(data["birthInfo"]);
+                        $("#user-home-address").text(data["homeAddress"]);
+                        $("#user-formal-id").text(data["formalId"]);
+                        $("#user-reward-info").text(data["rewardInfo"]);
+                        $("#user-punishment-info").text(data["punishmentInfo"]);
+                        $("#user-info-transparency").text(data["infoTransparency"]);
                         // $("#").text("");
                         for (var info of data["infoes"]) {
                             txt = "<tr class=\"row mx-0\"><th scope=\"row\" class=\"col-2 text-center\">联系方式</th><td class=\"col-9\">" + info + "</td></tr>";

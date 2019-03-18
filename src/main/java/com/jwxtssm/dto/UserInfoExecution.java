@@ -23,7 +23,7 @@ public class UserInfoExecution {
 
 	public UserInfoExecution(int viceId, String name, String sex, float height, float weight, Date birthInfo, String
 			homeAddress, String formalId, String rewardInfo, String punishmentInfo, String infoTransparency, String[]
-			type, String[] info) {
+			types, String[] infoes) {
 		this.viceId = viceId;
 		this.name = name;
 		this.sex = sex;
@@ -35,8 +35,8 @@ public class UserInfoExecution {
 		this.rewardInfo = rewardInfo;
 		this.punishmentInfo = punishmentInfo;
 		this.infoTransparency = infoTransparency;
-		this.types = type;
-		this.infoes = info;
+		this.types = types;
+		this.infoes = infoes;
 	}
 
 	public int getViceId() {
@@ -149,6 +149,6 @@ public class UserInfoExecution {
 				"height=" + height + ", weight=" + weight + ", birthInfo=" + birthInfo + ", homeAddress='" +
 				homeAddress + '\'' + ", formalId='" + formalId + '\'' + ", rewardInfo='" + rewardInfo + '\'' + ", " +
 				"punishmentInfo='" + punishmentInfo + '\'' + ", infoTransparency='" + infoTransparency + '\'' + ", " +
-				"types=" + Arrays.toString(types) + ", infoes=" + Arrays.toString(infoes) + '}';
+				"type=" + Arrays.toString(types) + ", infoes=" + Arrays.toString(infoes) + '}';
 	}
 }

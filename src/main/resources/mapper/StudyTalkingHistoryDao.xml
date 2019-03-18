@@ -4,6 +4,6 @@
 
 <mapper namespace="com.jwxtssm.dao.StudyTalkingHistoryDao">
     <insert id="addStudyTalkingHistory" parameterType="StudyTalkingHistory" useGeneratedKeys="true" keyProperty="messageId">
-        insert into study_talking_history values (null, #{talkId}, #{basicId}, #{courseId}, #{content}, #{publishDate}, #{indexCount}, #{types}, #{state});
+        insert into study_talking_history values (null, #{talkId}, #{basicId}, #{courseId}, #{content}, #{publishDate}, #{indexCount}, #{type}, #{state});
     </insert>
 </mapper>

@@ -4,6 +4,6 @@
 
 <mapper namespace="com.jwxtssm.dao.CourseDao">
     <insert id="addCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="courseId">
-        insert into course values (null, #{basicId}, #{types}, #{score}, #{name}, #{intro}, #{validFrom}, #{validTo}, #{state});
+        insert into course values (null, #{basicId}, #{type}, #{score}, #{name}, #{intro}, #{validFrom}, #{validTo}, #{state});
     </insert>
 </mapper>

@@ -4,6 +4,6 @@
 
 <mapper namespace="com.jwxtssm.dao.SystemMessageDao">
     <insert id="addSystemMessage" parameterType="SystemMessage" useGeneratedKeys="true" keyProperty="systemMessageId">
-        insert into system_message values (null, #{basicId}, #{types}, #{content}, #{publishDate}, #{priority}, #{state});
+        insert into system_message values (null, #{basicId}, #{type}, #{content}, #{publishDate}, #{priority}, #{state});
     </insert>
 </mapper>

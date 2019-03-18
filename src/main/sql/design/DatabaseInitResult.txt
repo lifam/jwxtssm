@@ -3,13 +3,13 @@
 BasicInfo{basicId=1, headImg=1, viceId=1, name='defaultName', password='defaultPassword', sex=0, height=0.0, weight=0.0, birthInfo=1970-01-01, homeAddress='defaultHomeAddress', formalId='441322111122223333', rewardInfo='defaultRewradInfo', punishmentInfo='defaultPunishmentInfo', infoTransparency=1}
 count = 1
 
-AddressInfo{addressId=1, basicId=1, types=1, infoes='defaultInfo'}
+AddressInfo{addressId=1, basicId=1, type=1, info='defaultInfo'}
 count = 1
 
 AuthInfo{authId=1, authCode=0, validFrom=1970-01-01, validTo=1970-01-01}
 count = 1
 
-Course{courseId=1, basicId=1, types=1, score=0, name='defaultName', timeLocation='defaultTimeLocation', intro='defaultIntro', validFrom=1970-01-01, validTo=1970-01-01, state=0}
+Course{courseId=1, basicId=1, type=1, score=0, name='defaultName', timeLocation='defaultTimeLocation', intro='defaultIntro', validFrom=1970-01-01, validTo=1970-01-01, state=0}
 count = 1
 
 CourseJudgeRecords{courseId=1, basicIdTe=1, basicIdSt=1, finalScore=0, state=0}
@@ -18,41 +18,41 @@ count = 1
 CourseRecords{courseId=1, basicId=1, finalScore=0, state=0}
 count = 1
 
-HomeworkExam{homeworkExamId=1, courseId=1, infoes='defaultInfo', percent=0, state=0}
+HomeworkExam{homeworkExamId=1, courseId=1, info='defaultInfo', percent=0, state=0}
 count = 1
 
-HomeworkExamScore{homeworkExamId=1, basicId=1, score=0, infoes='defaultInfo', state=0}
+HomeworkExamScore{homeworkExamId=1, basicId=1, score=0, info='defaultInfo', state=0}
 count = 1
 
 College{collegeId=1, name='defaultName', intro='defaultIntro', address='defaultAddress'}
 count = 1
 
-Major{majorId=1, collegeId=1, types=1, name='defaultName', intro='defaultIntro', majorCompulsoryGrades=0, majorElectiveGrades=0, publicCompulsoryGrades=0, publicElectiveGrades=0}
+Major{majorId=1, collegeId=1, type=1, name='defaultName', intro='defaultIntro', majorCompulsoryGrades=0, majorElectiveGrades=0, publicCompulsoryGrades=0, publicElectiveGrades=0}
 count = 1
 
-Org{orgId=1, collegeId=1, name='defaultName', infoes='defaultInfo'}
+Org{orgId=1, collegeId=1, name='defaultName', info='defaultInfo'}
 count = 1
 
-Role{roleId=1, basicId=1, authId=1, majorId=1, orgId=1, collegeId=1, types=1, validFrom=1970-01-01, validTo=1970-01-01, state=0}
+Role{roleId=1, basicId=1, authId=1, majorId=1, orgId=1, collegeId=1, type=1, validFrom=1970-01-01, validTo=1970-01-01, state=0}
 count = 1
 
 ScoreSum{basicId=1, mcScore=0.0, mcGrade=0, meScore=0.0, meGrade=0, pcScore=0.0, pcGrade=0, peScore=0.0, peGrade=0}
 count = 1
 
-SystemMessage{systemMessageId=1, basicId=1, types=1, content='defaultContent', publishDate=1970-01-01, priority=0, state=0}
+SystemMessage{systemMessageId=1, basicId=1, type=1, content='defaultContent', publishDate=1970-01-01, priority=0, state=0}
 count = 1
 
-DocCenter{docId=1, basicId=1, state=0, docAddress='defaultDocAddress', types=1, publishDate=1970-01-01}
+DocCenter{docId=1, basicId=1, state=0, docAddress='defaultDocAddress', type=1, publishDate=1970-01-01}
 count = 1
 
 AttachDoc{attachDocId=1, docId=1}
 count = 1
 
-EduMessage{eduMessageId=1, basicId=1, attachDocId=1, title='defaultTitle', content='defaultContent', types=1, publishDate=1970-01-01, state=0, priority=0}
+EduMessage{eduMessageId=1, basicId=1, attachDocId=1, title='defaultTitle', content='defaultContent', type=1, publishDate=1970-01-01, state=0, priority=0}
 count = 1
 
 StudyTalking{talkId=1, basicId=1, courseId=1, attachDocId=1, title='defaultTitle', content='defaultContent', hot=0.0, state=0, publishDate=1970-01-01, historyCount=0}
 count = 1
 
-StudyTalkingHistory{messageId=1, talkId=1, basicId=1, courseId=1, content='defaultContent', publishDate=1970-01-01, indexCount=0, types=1, state=0}
+StudyTalkingHistory{messageId=1, talkId=1, basicId=1, courseId=1, content='defaultContent', publishDate=1970-01-01, indexCount=0, type=1, state=0}
 count = 1
