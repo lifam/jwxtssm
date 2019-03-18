@@ -4,7 +4,7 @@
 
 <mapper namespace="com.jwxtssm.dao.OrgDao">
     <insert id="addOrg" parameterType="Org" useGeneratedKeys="true" keyProperty="orgId">
-        insert into org values (null, #{collegeId}, #{name}, #{info});
+        insert into org values (null, #{collegeId}, #{name}, #{infoes});
     </insert>
     <select id="queryById" parameterType="int" resultType="Org">
         select * from org where org_id = #{orgId};

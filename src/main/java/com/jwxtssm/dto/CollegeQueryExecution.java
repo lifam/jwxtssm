@@ -3,8 +3,8 @@ package com.jwxtssm.dto;
 import java.util.Arrays;
 
 public class CollegeQueryExecution {
-	String[] collegeNames;
-	int[] collegeIds;
+	private String[] collegeNames;
+	private int[] collegeIds;
 
 	public CollegeQueryExecution() {
 	}

@@ -1,18 +1,18 @@
 $(document).ready(function () {
-    if (!$.cookie("headImg")) {
-        $.cookie("headImg", "/getHeadImg" + "?no-cache-value=" + Math.random(), {path:"/"});
+    if (!Cookies.get("headImg")) {
+        Cookies.set("headImg", "/getHeadImg" + "?no-cache-value=" + Math.random(), {path:"/"});
     }
-    $("#headImg").attr("src", $.cookie("headImg"));
+    $("#headImg").attr("src", Cookies.get("headImg"));
 
     $("#clearCookies").click(function () {
-        $.cookie("set", null);
-        $.cookie("state", null);
-        $.cookie("authCodes", null);
-        $.cookie("headImg", "/getHeadImg" + "?no-cache-value=" + Math.random(), {path:"/"});
+        Cookies.remove("set");
+        Cookies.remove("state");
+        Cookies.remove("authCodes");
+        Cookies.set("headImg", "/getHeadImg" + "?no-cache-value=" + Math.random(), {path:"/"});
         location.reload();
     });
 
-    if ($.cookie("set") != "true") {
+    if (Cookies.get("set") != "true") {
         $.ajax({
             type: "POST",
             url: "/home",
@@ -35,20 +35,18 @@ $(document).ready(function () {
 
                         txt += data["authCodes"][i] + ','
                     }
-                    $.cookie("authCodes", txt, {path:"/"});
+                    Cookies.set("authCodes", txt, {path:"/"});
                 }
-                $.cookie("set", "true", {path:"/"});
-                $.cookie("state", data["state"], {path:"/"});
-
-
+                Cookies.set("set", "true", {path:"/"});
+                Cookies.set("state", data["state"], {path:"/"});
             }
         });
     } else {
-        if ($.cookie("state") == "success") {
+        if (Cookies.get("state") == "success") {
             $("#login").hide();
             $("#logout").show();
             $("#personalPage").show();
-            authCodes = $.cookie("authCodes").split(',');
+            authCodes = Cookies.get("authCodes").split(',');
             for (i in authCodes) {
                 if (authCodes[i] == '1') $(".admin").show();
                 else if (authCodes[i] == '2') $(".officer").show();

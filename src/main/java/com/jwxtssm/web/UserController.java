@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.jwxtssm.common.SpecialValues;
 import com.jwxtssm.common.Utils;
 import com.jwxtssm.dto.Result;
+import com.jwxtssm.dto.UserInfoExecution;
 import com.jwxtssm.dto.UserLoginExecution;
+import com.jwxtssm.exception.CustomException;
 import com.jwxtssm.service.impl.DefaultService;
 import com.jwxtssm.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -76,5 +76,36 @@ public class UserController {
 		Utils.clearCookie(httpServletResponse, "headImg");
 		session.invalidate();
 		return "redirect:/home";
+	}
+
+	@RequestMapping(value = "/personalPage", method = RequestMethod.GET)
+	public String getPersonalPage() {
+		return "WEB-INF/html/personalPage.html";
+	}
+
+	@RequestMapping(value = "/getPersonalInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public JSON postPersonalInfo(HttpSession session) throws CustomException {
+		if (session.getAttribute(SpecialValues.USER_ID) == null) {
+			throw new CustomException("请先登陆!");
+		}
+		Map<String, Object> resultMap = new TreeMap<>();
+		UserInfoExecution userInfoExecution = userService.getUserInfo((Integer) session.getAttribute(SpecialValues.USER_ID));
+		resultMap.put("viceId", userInfoExecution.getViceId());
+		resultMap.put("name", userInfoExecution.getName());
+		resultMap.put("sex", userInfoExecution.getSex());
+		resultMap.put("height", userInfoExecution.getHeight());
+		resultMap.put("weight", userInfoExecution.getWeight());
+		resultMap.put("birthInfo", userInfoExecution.getBirthInfo());
+		resultMap.put("homeAddress", userInfoExecution.getHomeAddress());
+		resultMap.put("formalId", userInfoExecution.getFormalId());
+		resultMap.put("rewardInfo", userInfoExecution.getRewardInfo());
+		resultMap.put("punishmentInfo", userInfoExecution.getPunishmentInfo());
+		resultMap.put("infoTransparency", userInfoExecution.getInfoTransparency());
+//		resultMap.put("types", userInfoExecution.getTypes());
+		resultMap.put("infoes", userInfoExecution.getInfoes());
+
+		resultMap.put("state", "success");
+		return new JSONObject(resultMap);
 	}
 }

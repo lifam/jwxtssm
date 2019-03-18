@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.sql.Date;
 
 @Service
 public class FileUploadService {
@@ -27,7 +28,7 @@ public class FileUploadService {
 	DocCenterDao docCenterDao;
 
 	@Transactional
-	public boolean updateHeadImgService(HttpSession session, MultipartFile multipartFile, int basicId) throws
+	public boolean updateHeadImg(HttpSession session, MultipartFile multipartFile, int basicId) throws
 			CustomException {
 		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
 		if (basicInfo == null) {
@@ -70,7 +71,7 @@ public class FileUploadService {
 	}
 
 	@Transactional
-	public boolean deleteHeadImgService(HttpSession session, int basicId) throws CustomException {
+	public boolean deleteHeadImg(HttpSession session, int basicId) throws CustomException {
 		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
 		if (basicInfo == null) {
 			throw new CustomException("操作:删除头像,用户不存在!");
@@ -93,7 +94,7 @@ public class FileUploadService {
 	}
 
 	@Transactional
-	public int uploadFileService(HttpSession session, MultipartFile[] multipartFiles, int basicId) throws CustomException {
+	public int uploadFile(HttpSession session, MultipartFile[] multipartFiles, int basicId) throws CustomException {
 		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
 		if (basicInfo == null) {
 			throw new CustomException("操作:上传文件,用户不存在!");
@@ -121,7 +122,7 @@ public class FileUploadService {
 	}
 
 	@Transactional
-	public boolean deleteFileService(HttpSession session, int basicId, int docId) throws CustomException {
+	public boolean deleteFile(HttpSession session, int basicId, int docId) throws CustomException {
 		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
 		DocCenter docCenter = docCenterDao.queryById(docId);
 		if (basicInfo == null) {
@@ -140,18 +141,37 @@ public class FileUploadService {
 		return true;
 	}
 
-	public DocsQueryExecution queryDocsService(int basicId) throws CustomException {
+	public DocsQueryExecution queryDocs(HttpSession session, int basicId) throws CustomException {
 		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
 		if (basicInfo == null) {
-			throw new CustomException("操作:删除文件,用户不存在!");
+			throw new CustomException("操作:查询文件,用户不存在!");
 		}
 		DocCenter[] docCenters = docCenterDao.queryByBasicId(basicId);
 		String[] docNames = new String[docCenters.length];
 		int[] docIds = new int[docCenters.length];
+		Date[] publishDates = new Date[docCenters.length];
+		int[] docSizes = new int[docCenters.length];
 		for (int i = 0; i < docCenters.length; i++) {
 			docNames[i] = docCenters[i].getDocAddress().split("-")[1];
 			docIds[i] = docCenters[i].getDocId();
+			publishDates[i] = docCenters[i].getPublishDate();
+
+			File file = new File(session.getServletContext().getRealPath(SpecialValues.DOCS_BASE_PATH) + File.separator + docCenters[i].getDocAddress());
+			docSizes[i] = (int) file.length();
 		}
-		return new DocsQueryExecution(docNames, docIds);
+		return new DocsQueryExecution(docNames, docIds, publishDates, docSizes);
+	}
+
+	public String downloadDoc(int basicId, int docId) throws CustomException {
+		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
+		if (basicInfo == null) {
+			throw new CustomException("操作:下载文件,用户不存在!");
+		}
+		DocCenter docCenter = docCenterDao.queryById(docId);
+		if (docCenter == null) {
+			throw new CustomException("操作:下载文件,文件不存在!");
+		}
+
+		return docCenter.getDocAddress();
 	}
 }

@@ -10,7 +10,7 @@ CREATE TABLE basic_info(
 	name varchar(30) NOT NULL,
 	-- 密码，使用sha-256
 	password varchar(40) NOT NULL,
-	-- 性别
+	-- 性别,1-男/2-女
 	sex int,
 	-- 身高/cm
 	height float,
@@ -38,9 +38,9 @@ CREATE TABLE address_info(
 	address_id int auto_increment,
 	basic_id int NOT NULL,
 	-- 1-邮箱/2-电话/3-QQ/4-微信/5-微博
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 联系信息具体值
-	info varchar(30) NOT NULL,
+	infoes varchar(30) NOT NULL,
 	PRIMARY KEY(address_id),
 	FOREIGN KEY(basic_id) REFERENCES basic_info(basic_id)
 ) ENGINE = InnoDB;
@@ -77,7 +77,7 @@ CREATE TABLE course(
 	-- 开课老师
 	basic_id int NOT NULL,
 	-- 课程类型，1-专必MC/2-专选ME/3-公必PC/4-公选PE
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 课程学分
 	score int NOT NULL,
 	-- 课程名称
@@ -147,7 +147,7 @@ CREATE TABLE homework_exam(
 	-- 课程id
 	course_id int NOT NULL,
 	-- 作业/考试说明
-	info varchar(150) NOT NULL,
+	infoes varchar(150) NOT NULL,
 	-- 占总评成绩的比例
 	percent int NOT NULL,
 	-- 状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
@@ -165,7 +165,7 @@ CREATE TABLE homework_exam_score(
 	-- 作业/考试成绩
 	score int,
 	-- 评分说明
-	info varchar(20),
+	infoes varchar(20),
 	-- 状态，32th-bit：已审核/未审核(审核后锁定,不可再修改)
 	state int,
 	PRIMARY KEY(homework_exam_id, basic_id),
@@ -193,7 +193,7 @@ CREATE TABLE major(
 	-- 所属学院
 	college_id int NOT NULL,
 	-- 学制，1-全日制4年/2-全日制5年
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 专业名称
 	name varchar(30) NOT NULL,
 	-- 专业介绍
@@ -219,7 +219,7 @@ CREATE TABLE org(
 	-- 名字
 	name varchar(30) NOT NULL,
 	-- 介绍
-	info varchar(1500),
+	infoes varchar(1500),
 	PRIMARY KEY(org_id),
 	FOREIGN KEY(college_id) REFERENCES college(college_id)
 ) ENGINE = InnoDB;
@@ -234,7 +234,7 @@ CREATE TABLE role(
 	org_id int NOT NULL,
 	college_id int NOT NULL,
 	-- 角色类型，1-管理员/2-教务员/3-助教/4-学生/5-教授/6-副教授/7-高级讲师/8-讲师/9-特聘研究员
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 生效日期
 	valid_from date NOT NULL,
 	-- 失效日期
@@ -281,7 +281,7 @@ CREATE TABLE system_message(
 	-- 通知对象
 	basic_id int NOT NULL,
 	-- 通知类型，1-教务通知/2-课程通知(作业发布/成绩发布等)/3-课内讨论(被@时通知)
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 通知内容
 	content varchar(200) NOT NULL,
 	-- 通知发布日期
@@ -305,7 +305,7 @@ CREATE TABLE doc_center(
 	-- 文件本地地址
 	doc_address varchar(300) NOT NULL,
 	-- 文件类型，1-其它文件/2-头像
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 上传日期
 	publish_date date NOT NULL,
 	PRIMARY KEY(doc_id),
@@ -336,7 +336,7 @@ CREATE TABLE edu_message(
 	-- 内容
 	content varchar(3000) NOT NULL,
 	-- 类型，1-普通通知/2-通知全体教职人员/3-通知全体学生/4-通知全体人员
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 发布日期
 	publish_date date NOT NULL,
 	-- 状态，1-有效/2-已失效
@@ -394,7 +394,7 @@ CREATE TABLE study_talking_history(
 	-- 第几条讨论
 	index_count int NOT NULL,
 	-- 类型，暂未定义
-	type int NOT NULL,
+	types int NOT NULL,
 	-- 状态，1-有效/2-无效
 	state int NOT NULL,
 	PRIMARY KEY(message_id),

@@ -4,16 +4,16 @@
 
 <mapper namespace="com.jwxtssm.dao.DocCenterDao">
     <insert id="addDocCenter" parameterType="DocCenter" useGeneratedKeys="true" keyProperty="docId">
-        insert into doc_center values (null, #{basicId}, #{state}, #{docAddress}, #{type}, #{publishDate});
+        insert into doc_center values (null, #{basicId}, #{state}, #{docAddress}, #{types}, #{publishDate});
     </insert>
     <select id="queryById" parameterType="int" resultType="DocCenter">
         select * from doc_center where doc_id = #{docId};
     </select>
     <select id="queryByBasicId" parameterType="int" resultType="DocCenter">
-        select * from doc_center where basic_id = #{basicId};
+        select * from doc_center where basic_id = #{basicId} and state = 1 and types = 1;
     </select>
     <update id="updateById" parameterType="DocCenter">
-        update doc_center set state = #{state}, doc_address = #{docAddress}, type = #{type}, publish_date = #{publishDate}  where doc_id = #{docId};
+        update doc_center set state = #{state}, doc_address = #{docAddress}, types = #{types}, publish_date = #{publishDate}  where doc_id = #{docId};
     </update>
     <delete id="deleteById" parameterType="int">
         delete from doc_center where doc_id = #{docId};

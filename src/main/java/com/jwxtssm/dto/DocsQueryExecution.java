@@ -1,17 +1,22 @@
 package com.jwxtssm.dto;
 
+import java.sql.Date;
 import java.util.Arrays;
 
 public class DocsQueryExecution {
-	String[] docNames;
-	int[] docIds;
+	private String[] docNames;
+	private int[] docIds;
+	private Date[] publishDates;
+	private int[] docSizes;
 
 	public DocsQueryExecution() {
 	}
 
-	public DocsQueryExecution(String[] docNames, int[] docIds) {
+	public DocsQueryExecution(String[] docNames, int[] docIds, Date[] publishDates, int[] docSizes) {
 		this.docNames = docNames;
 		this.docIds = docIds;
+		this.publishDates = publishDates;
+		this.docSizes = docSizes;
 	}
 
 	public String[] getDocNames() {
@@ -30,9 +35,25 @@ public class DocsQueryExecution {
 		this.docIds = docIds;
 	}
 
+	public Date[] getPublishDates() {
+		return publishDates;
+	}
+
+	public void setPublishDates(Date[] publishDates) {
+		this.publishDates = publishDates;
+	}
+
+	public int[] getDocSizes() {
+		return docSizes;
+	}
+
+	public void setDocSizes(int[] docSizes) {
+		this.docSizes = docSizes;
+	}
+
 	@Override
 	public String toString() {
-		return "DocsQueryExecution{" + "docNames=" + Arrays.toString(docNames) + ", docIds=" + Arrays.toString
-				(docIds) + '}';
+		return "DocsQueryExecution{" + "docNames=" + Arrays.toString(docNames) + ", docIds=" + Arrays.toString(docIds)
+				+ ", publishDates=" + Arrays.toString(publishDates) + ", docSizes=" + Arrays.toString(docSizes) + '}';
 	}
 }

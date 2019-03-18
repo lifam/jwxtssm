@@ -1,12 +1,16 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<%@ page import="java.sql.Date" %><%--
+  Created by IntelliJ IDEA.
+  User: yejianwen
+  Date: 2019/3/18
+  Time: 15:24
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html class="no-js" lang=""> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>jwxt major</title>
+    <title>jwxt home</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,6 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- <script types="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
@@ -33,25 +38,7 @@
     <script types="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
     <script types="text/javascript" src="assets/js/sideBarCookieCache.js"></script>
 
-    <script types="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                types: "POST",
-                url: "/major",
-                dataType: "json",
-                async: "true",
-                success: function (data) {
-                    data = eval(data);
-                    // $("#debug").text(data["majorNames"]);
-                    for (i in data["majorNames"]) {
-                        // data["majorNames"][i];
-                        newDiv = "<div class=\"col-lg-3 col-md-6\"><div class=\"card people\"><div class=\"card-body\"><div class=\"stat-widget-five\"><div class=\"stat-icon dib flat-color-4\"><i class=\"pe-7s-users\"></i></div><div class=\"stat-content\"><div class=\"text-left dib\"><div class=\"stat-text\"><a>" + data["majorNames"][i] + "</a></div></div></div></div></div></div></div></div>";
-                        $("#major").append(newDiv);
-                    }
-                }
-            });
-        });
-    </script>
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -255,40 +242,60 @@
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
-            <div id="major" class="row">
-                <!--  <div class="col-lg-3 col-md-6">
-                     <div class="card teaching-notification">
-                         <div class="card-body">
-                             <div class="stat-widget-five">
-                                 <div class="stat-icon dib flat-color-3">
-                                     <i class="pe-7s-browser"></i>
-                                 </div>
-                                 <div class="stat-content">
-                                     <div class="text-left dib">
-                                         <div class="stat-text">123</div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div> -->
-
-                <!-- <div class="col-lg-3 col-md-6">
-                    <div class="card people">
+            <div id="main-content-box" class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">文件中心</strong>
+                        </div>
                         <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-4">
-                                    <i class="pe-7s-users"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text">456</div>
-                                    </div>
-                                </div>
-                            </div>
+                            <br>
+                            <p id="state-message" class="text-center" style="display: none">文件：xxx已删除！</p>
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered table-hover" style="word-break:break-all; word-wrap:break-all;">
+                                <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>文件大小</th>
+                                    <th>上传日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="doc-items">
+                                <!-- <tr>
+                                    <td style="width: 30em; word-break:break-all; word-wrap:break-all;"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <button types="button" class="btn btn-danger btn-sm"><a style="color: black" href="">删除</a></button>
+                                        <button types="button" class="btn btn-primary btn-sm"><a style="color: black" href="">重命名</a></button>
+                                        <button types="button" class="btn btn-success btn-sm"><a style="color: black" href="">下载</a></button>
+                                    </td>
+                                </tr> -->
+                                    <%
+                                        String[] docNames = (String[]) request.getAttribute("docNames");
+                                        int[] docIds = (int[]) request.getAttribute("docIds");
+                                        Date[] publishDates = (Date[]) request.getAttribute("publishDates");
+                                        int[] docSizes = (int[]) request.getAttribute("docSizes");
+                                        for (int i = 0; i < docNames.length; i++) {
+                                        	String txt = "<tr><td style=\"width: 30em; word-break:break-all; word-wrap:break-all;\">";
+                                            txt += docNames[i];
+                                            txt += "</td><td>";
+                                            txt += docSizes[i];
+                                            txt += "</td><td>";
+                                            txt += publishDates[i];
+                                            txt += "</td><td><button types=\"button\" class=\"btn btn-danger btn-sm\"><a style=\"color: black\" href=\"";
+                                            txt += "/deleteUploadFiles?docId=" + docIds[i];
+                                            txt += "\">删除</a></button><button types=\"button\" class=\"btn btn-success btn-sm\"><a style=\"color: black\" href=\"";
+                                            txt += "/downloadUploadFiles?docId=" + docIds[i];
+                                            txt += "\">下载</a></button></td></tr>";
+                                            out.print(txt);
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <!-- /Widgets -->
             <!-- Calender -->
@@ -352,5 +359,17 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
 <script src="assets/js/init/fullcalendar-init.js"></script>
 
+<script src="assets/js/lib/data-table/datatables.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/jszip.min.js"></script>
+<script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="assets/js/init/datatables-init.js"></script>
 </body>
+
 </html>
+
