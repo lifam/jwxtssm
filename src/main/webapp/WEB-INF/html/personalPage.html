@@ -34,6 +34,50 @@
     <script type="text/javascript" src="assets/js/sideBarCookieCache.js"></script>
 
     <script type="text/javascript">
+        function userInputFilling() {
+            $("#user-name-input").val($("#user-name").text());
+            $("#user-password-input").val("");
+
+            if ($("#user-sex").text() == "男") {
+                $("#user-sex-radio-group").find(":radio[value='male']").prop("checked", true);
+            } else if ($("#user-sex").text() == "女") {
+                $("#user-sex-radio-group").find(":radio[value='female']").prop("checked", true);
+            } else {
+                $("#user-sex-radio-group").find(":radio[value='male']").prop("checked", false);
+                $("#user-sex-radio-group").find(":radio[value='female']").prop("checked", false);
+            }
+
+            $("#user-height-input").val($("#user-height").text());
+            $("#user-weight-input").val($("#user-weight").text());
+            $("#user-birth-input").val($("#user-birth-info").text());
+            $("#user-address-input").val($("#user-home-address").text());
+            $("#user-formal-id-input").val($("#user-formal-id").text());
+
+            // $("#").val($("#").text());
+            if ($("#user-info-transparency").text() == "名字/头像/联系信息") {
+                $("#user-select-info-transparency").val("1");
+            } else if ($("#user-info-transparency").text() == "名字/头像/联系信息/学号") {
+                $("#user-select-info-transparency").val("2");
+            } else if ($("#user-info-transparency").text() == "名字/头像/联系信息/学号/性别") {
+                $("#user-select-info-transparency").val("3");
+            } else if ($("#user-info-transparency").text() == "名字/头像/联系信息/学号/性别/出生年月") {
+                $("#user-select-info-transparency").val("4");
+            } else if ($("#user-info-transparency").text() == "名字/头像/联系信息/学号/性别/出生年月/身高/体重") {
+                $("#user-select-info-transparency").val("5");
+            } else {
+                $("#user-select-info-transparency").val("1");
+            }
+        }
+
+        function userAddressFilling() {
+            var txt = "";
+            for (var address of document.getElementsByClassName("user-address-group")) {
+                txt += address.innerText + ';';
+            }
+            $("#user-address-text-input").val(txt);
+        }
+
+
         $(document).ready(function () {
             $("#doc-upload-btn").click(function () {
                 window.location.assign("/fileUpload");
@@ -42,14 +86,16 @@
                 window.location.assign("/getDocManagement");
             });
             $("#modify-main-info-btn").click(function () {
-
+                userInputFilling();
 
                 $("#main-info-modify-box").toggle();
+                $("#user-name-input").focus();
             });
             $("#modify-address-info-btn").click(function () {
-
+                userAddressFilling();
 
                 $("#address-info-modify-box").toggle();
+                $("#user-address-text-input").focus();
             });
 
             $.ajax({
@@ -74,11 +120,18 @@
                         $("#user-info-transparency").text(data["infoTransparency"]);
                         // $("#").text("");
                         for (var info of data["infoes"]) {
-                            txt = "<tr class=\"row mx-0\"><th scope=\"row\" class=\"col-2 text-center\">联系方式</th><td class=\"col-9\">" + info + "</td></tr>";
+                            txt = "<tr class=\"row mx-0\"><th scope=\"row\" class=\"col-2 text-center\">联系方式</th><td class=\"col-9 user-address-group text-center\">" + info + "</td></tr>";
                             $("#user-info-body").append(txt);
                         }
                     }
                 }
+            });
+
+            $("#user-input-reset-btn").click(function () {
+                userInputFilling();
+            });
+            $("#user-address-reset-btn").click(function () {
+                userAddressFilling();
             });
         });
     </script>
@@ -297,7 +350,7 @@
                                 <div class="mx-auto d-block">
                                     <img id="user-head-img" class="rounded-circle mx-auto d-block" src="" alt="Card image cap" style="width: 200px; height: 200px">
                                     <br>
-                                    <h3 id="user-name" class="text-sm-center mt-2 mb-1">某某某</h3>
+                                    <h3 id="user-name" class="text-sm-center mt-2 mb-1"></h3>
                                 </div>
                             </div>
 
@@ -313,35 +366,35 @@
                                 <tbody id="user-info-body" class="w-100">
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">学号/职工号</th>
-                                    <td id="user-vice-id" class="col-9"></td>
+                                    <td id="user-vice-id" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">性别</th>
-                                    <td id="user-sex" class="col-9"></td>
+                                    <td id="user-sex" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">身高</th>
-                                    <td id="user-height" class="col-9"></td>
+                                    <td id="user-height" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">体重</th>
-                                    <td id="user-weight" class="col-9"></td>
+                                    <td id="user-weight" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">出生年月</th>
-                                    <td id="user-birth-info" class="col-9"></td>
+                                    <td id="user-birth-info" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">家庭住址</th>
-                                    <td id="user-home-address" class="col-9"></td>
+                                    <td id="user-home-address" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">身份证号</th>
-                                    <td id="user-formal-id" class="col-9"></td>
+                                    <td id="user-formal-id" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">信息可见度</th>
-                                    <td id="user-info-transparency" class="col-9"></td>
+                                    <td id="user-info-transparency" class="col-9 text-center"></td>
                                 </tr>
                                 <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">奖励信息</th>
@@ -353,7 +406,7 @@
                                 </tr>
                                 <!-- <tr class="row mx-0">
                                     <th scope="row" class="col-2 text-center">联系方式</th>
-                                    <td class="col-9"></td>
+                                    <td class="col-9 text-center"></td>
                                 </tr> -->
                                 </tbody>
                             </table>
@@ -384,117 +437,87 @@
                             <strong>基本信息</strong>
                         </div>
                         <div class="card-body card-block">
-                            <form class="form-horizontal">
+                            <form action="/updateBasicInfo" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <!-- <div class="row form-group">
                                     <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">学号</label></div>
                                     <div class="col-12 col-md-9"><input type="text" name="disabled-input" placeholder="14000000" disabled="" class="form-control"></div>
                                 </div> -->
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="text-input" class=" form-control-label">姓名</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="请输入姓名" class="form-control"><small class="form-text text-muted">姓名最多不能超过30个字符</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-name-input" class=" form-control-label">姓名</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-name-input" name="user-name-input" placeholder="请输入姓名" class="form-control"><small class="form-text text-muted">姓名最多不能超过30个字符</small></div>
                                 </div>
                                 <!-- <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
                                     <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                                 </div> -->
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="password-input" class=" form-control-label">密码</label></div>
-                                    <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="" class="form-control"><small class="help-block form-text">输入任意字符作为密码，如果不输入，密码不会被修改</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-password-input" class=" form-control-label">密码</label></div>
+                                    <div class="col-12 col-md-9"><input type="password" id="user-password-input" name="user-password-input" placeholder="" class="form-control"><small class="help-block form-text">输入任意字符作为密码，如果不输入，密码不会被修改</small></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label class=" form-control-label">性别</label></div>
+                                    <div class="col col-md-3 text-center"><label class="form-control-label">性别</label></div>
                                     <div class="col col-md-9">
-                                        <div class="form-check-inline form-check">
+                                        <div id="user-sex-radio-group" class="form-check-inline form-check">
                                             <label for="male-radio" class="form-check-label col">
-                                                <input type="radio" id="male-radio" name="inline-radios" value="male" class="form-check-input">男
+                                                <input type="radio" id="male-radio" name="user-sex-radios" value="male" class="form-check-input">男
                                             </label>
                                             <label for="female-radio" class="form-check-label col">
-                                                <input type="radio" id="female-radio" name="inline-radios" value="female" class="form-check-input">女
+                                                <input type="radio" id="female-radio" name="user-sex-radios" value="female" class="form-check-input">女
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row form-group">
-                                    <div class="col col-md-3"><label for="password-input" class=" form-control-label">Password</label></div>
-                                    <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="Password" class="form-control"><small class="help-block form-text">Please enter a complex password</small></div>
-                                </div> -->
-                                <!-- <div class="row form-group">
-                                    <div class="col col-md-3"><label for="disabled-input" class=" form-control-label">Disabled Input</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="disabled-input" name="disabled-input" placeholder="Disabled" disabled="" class="form-control"></div>
-                                </div> -->
-                                <!-- <div class="row form-group">
-                                    <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Textarea</label></div>
-                                    <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
-                                </div> -->
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="height-input" class=" form-control-label">身高</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="height-input" name="height-input" placeholder="" class="form-control"><small class="form-text text-muted">单位：cm</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-height-input" class=" form-control-label">身高</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-height-input" name="user-height-input" placeholder="" class="form-control"><small class="form-text text-muted">单位：cm</small></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="weight-input" class=" form-control-label">体重</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="weight-input" name="weight-input" placeholder="" class="form-control"><small class="form-text text-muted">单位：kg</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-weight-input" class="form-control-label">体重</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-weight-input" name="user-weight-input" placeholder="" class="form-control"><small class="form-text text-muted">单位：kg</small></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="birth-input" class="form-control-label">出生年月</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="birth-input" name="birth-input" placeholder="" class="form-control"><small class="form-text text-muted">格式：2000-3-8</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-birth-input" class="form-control-label">出生年月</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-birth-input" name="user-birth-input" placeholder="" class="form-control"><small class="form-text text-muted">格式：2000-3-8</small></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="address-input" class=" form-control-label">家庭住址</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="address-input" name="address-input" placeholder="" class="form-control"><small class="form-text text-muted">格式：xx省xx市xx县xx镇xx村</small></div>
+                                    <div class="col col-md-3 text-center"><label for="user-address-input" class=" form-control-label">家庭住址</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-address-input" name="user-address-input" placeholder="" class="form-control"><small class="form-text text-muted">格式：xx省xx市xx县xx镇xx村</small></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="formal-id-input" class=" form-control-label">身份证号</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="formal-id-input" name="formal-id-input" placeholder="" class="form-control"></div>
+                                    <div class="col col-md-3 text-center"><label for="user-formal-id-input" class="form-control-label">身份证号</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-formal-id-input" name="user-formal-id-input" placeholder="" class="form-control"></div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="select-info-transparency" class="form-control-label">信息可见度</label></div>
+                                    <div class="col col-md-3 text-center"><label for="user-select-info-transparency" class="form-control-label">信息可见度</label></div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select-info-transparency" id="select-info-transparency" class="form-control form-control">
-                                            <option value="0">名字+头像+联系信息（默认）</option>
-                                            <option value="1">+学号/职工号</option>
-                                            <option value="2">+性别</option>
-                                            <option value="3">+出生年月</option>
-                                            <option value="4">+身高体重</option>
+                                        <select name="user-select-info-transparency" id="user-select-info-transparency" class="user-form-control form-control">
+                                            <option value="1">名字+头像+联系信息（默认）</option>
+                                            <option value="2">+学号/职工号</option>
+                                            <option value="3">+性别</option>
+                                            <option value="4">+出生年月</option>
+                                            <option value="5">+身高体重</option>
                                         </select>
                                         <small class="form-text text-muted">可见度包括更低的级别，例如：+性别意味着可以看到性别、学号等信息</small>
                                     </div>
                                 </div>
 
-                                <!-- <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Inline Radios</label></div>
-                                    <div class="col col-md-9">
-                                        <div class="form-check-inline form-check">
-                                            <label for="inline-radio1" class="form-check-label ">
-                                                <input type="radio" id="inline-radio1" name="inline-radios" value="option1" class="form-check-input">One
-                                            </label>
-                                            <label for="inline-radio2" class="form-check-label ">
-                                                <input type="radio" id="inline-radio2" name="inline-radios" value="option2" class="form-check-input">Two
-                                            </label>
-                                            <label for="inline-radio3" class="form-check-label ">
-                                                <input type="radio" id="inline-radio3" name="inline-radios" value="option3" class="form-check-input">Three
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
-                                <div id="main-info-modifyInfo" class="row form-group">
-                                    <div class="col col-md-2">
-                                    </div>
-                                    <div class="col col-md-8"><label class="form-control-label">Multiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File input</label></div>
-                                </div>
+                                <!--<div id="main-info-modifyInfo" class="row form-group">-->
+                                <!--<div class="col col-md-2">-->
+                                <!--</div>-->
+                                <!--<div class="col col-md-8"><label class="form-control-label">Multiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File input</label></div>-->
+                                <!--</div>-->
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
                                     </div>
                                     <div class="col col-md-3">
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> 修改
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa"></i>提交
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-ban"></i> 重置
+                                        <button id="user-input-reset-btn" type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa"></i>重置
                                         </button>
                                     </div>
                                 </div>
@@ -509,33 +532,23 @@
                             <strong>联系信息</strong>
                         </div>
                         <div class="card-body card-block">
-                            <form class="form-horizontal">
+                            <form action="/updateAddressInfo" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="text-input" class=" form-control-label">邮箱</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="请输入姓名" class="form-control"></div>
+                                    <div class="col col-md-3 text-center"><label for="user-address-text-input" class=" form-control-label">联系方式</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="user-address-text-input" name="user-address-text-input" placeholder="" class="form-control"></div>
+                                    <input type="hidden" name="user-address-count">
                                 </div>
+                                <hr>
                                 <div class="row form-group">
-                                    <div class="col col-md-3 text-center"><label for="text-input" class=" form-control-label">电话</label></div>
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="请输入姓名" class="form-control"></div>
-                                </div>
-
-                                <div id="address-info-modifyInfo" class="row form-group">
-                                    <div class="col col-md-2">
-                                    </div>
-                                    <div class="col col-md-8"><label class="form-control-label">Multiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File inputMultiple File input</label></div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <div class="col col-md-4">
-                                    </div>
-                                    <div class="col col-md-3">
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> 修改
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa"></i> 提交
                                         </button>
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-ban"></i> 重置
+                                        <button id="user-address-reset-btn" type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa"></i> 重置
                                         </button>
                                     </div>
                                 </div>

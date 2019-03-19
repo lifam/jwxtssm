@@ -15,4 +15,7 @@
     <update id="updateHeadImg" parameterType="BasicInfo">
         update basic_info set head_img = #{headImg} where basic_id = #{basicId} ;
     </update>
+    <update id="updateAll" parameterType="BasicInfo">
+        update basic_info set vice_id = #{viceId}, name = #{name}, password = #{password}, sex = #{sex}, height = #{height}, weight = #{weight}, birth_info = #{birthInfo}, home_address = #{homeAddress}, formal_id = #{formalId}, reward_info = #{rewardInfo}, punishment_info = #{punishmentInfo}, info_transparency = #{infoTransparency} where basic_id = #{basicId} ;
+    </update>
 </mapper>

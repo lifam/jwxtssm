@@ -25,6 +25,7 @@ public class SpecialValues {
 	public final static int DOC_STATE_INVALID = 2;
 	public final static int DOC_TYPE_HEAD_IMG = 2;
 	public final static int DOC_TYPE_OTHER = 1;
+	public final static int ADDRESS_TYPE_UNKNOWN = 0;
 
 	public final static String USER_ID = "basic_id";
 	public final static String AUTH_CODES = "auth_codes";

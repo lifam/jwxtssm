@@ -1,5 +1,8 @@
 package com.jwxtssm.service.impl;
 
+import com.jwxtssm.common.DefaultPojo;
+import com.jwxtssm.common.DefaultValues;
+import com.jwxtssm.common.SpecialValues;
 import com.jwxtssm.common.Utils;
 import com.jwxtssm.dao.AddressInfoDao;
 import com.jwxtssm.dao.AuthInfoDao;
@@ -17,9 +20,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -112,7 +121,7 @@ public class UserService implements IUserService {
 		if (basicInfo.getSex() == 1) sex = "男";
 		else if (basicInfo.getSex() == 0) sex = "女";
 
-		String infoTransparency = "名字/头像";
+		String infoTransparency = "名字/头像/联系信息";
 		if (basicInfo.getInfoTransparency() == 2) {
 			infoTransparency += "/学号";
 		}
@@ -129,5 +138,74 @@ public class UserService implements IUserService {
 		return new UserInfoExecution(basicInfo.getViceId(), basicInfo.getName(), sex, basicInfo.getHeight(), basicInfo
 				.getWeight(), basicInfo.getBirthInfo(), basicInfo.getHomeAddress(), basicInfo.getFormalId(), basicInfo
 				.getRewardInfo(), basicInfo.getPunishmentInfo(), infoTransparency, types, infos);
+	}
+
+	@Override
+	@Transactional
+	public void updateBasicInfo(int basicId, String name, String password, String sex, String height, String weight,
+								String birth, String address, String formalId, String infoTransparency) throws CustomException, UnsupportedEncodingException {
+		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
+		if (basicInfo == null) {
+			throw new CustomException("操作:更新用户信息,用户不存在!");
+		}
+
+		basicInfo.setName(name);
+
+		if (password != null && !password.equals("")) {
+			basicInfo.setPassword(Utils.generateSHA256Digest(password));
+		}
+
+		int sexVal = DefaultValues.SEX;
+		if (sex.equals("male")) {
+			sexVal = 1;
+		} else if (sex.equals("female")) {
+			sexVal = 2;
+		}
+//		logger.debug("接受到的性别: " + sex);
+		basicInfo.setSex(sexVal);
+
+		float heightVal = Float.valueOf(height);
+		float weightVal = Float.valueOf(weight);
+		basicInfo.setHeight(heightVal);
+		basicInfo.setWeight(weightVal);
+
+		//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		//		try {
+		//			Date birthInfo = formatter.parse(birth);
+		//		} catch (ParseException e) {
+		//			e.printStackTrace();
+		//		}
+		Date birthInfo = Utils.convertYMDToDate(Integer.valueOf(birth.split("-")[0]), Integer.valueOf(birth.split("-")
+				[1]), Integer.valueOf(birth.split("-")[2]));
+		basicInfo.setBirthInfo(birthInfo);
+
+		basicInfo.setHomeAddress(address);
+		basicInfo.setFormalId(formalId);
+
+		int infoTransparencyVal = Integer.valueOf(infoTransparency);
+		basicInfo.setInfoTransparency(infoTransparencyVal);
+
+		basicInfoDao.updateAll(basicInfo);
+	}
+
+	@Override
+	@Transactional
+	public void updateAddressInfo(int basicId, String addressInfoes) throws CustomException {
+		BasicInfo basicInfo = basicInfoDao.queryById(basicId);
+		if (basicInfo == null) {
+			throw new CustomException("操作:更新用户信息,用户不存在!");
+		}
+		String[] addressInfoArr = addressInfoes.split(";");
+//		AddressInfo[] addressInfos = addressInfoDao.queryByBasicId(basicId);
+		addressInfoDao.deleteByBasicId(basicId);
+
+		AddressInfo addressInfo = DefaultPojo.getDefaultAddressInfo();
+		addressInfo.setBasicId(basicId);
+		addressInfo.setType(SpecialValues.ADDRESS_TYPE_UNKNOWN);
+		for (String address: addressInfoArr) {
+			if (address.equals("")) continue;
+			addressInfo.setInfo(address);
+			addressInfoDao.addAddressInfo(addressInfo);
+		}
 	}
 }

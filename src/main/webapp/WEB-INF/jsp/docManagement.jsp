@@ -250,7 +250,7 @@
                         </div>
                         <div class="card-body">
                             <br>
-                            <p id="state-message" class="text-center" style="display: none">文件：xxx已删除！</p>
+                            <%--<p id="state-message" class="text-center" style="display: none">文件：xxx已删除！</p>--%>
                             <table id="bootstrap-data-table" class="table table-striped table-bordered table-hover" style="word-break:break-all; word-wrap:break-all;">
                                 <thead>
                                 <tr>

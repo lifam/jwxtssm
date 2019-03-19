@@ -12,4 +12,10 @@
     <select id="queryByBasicId" parameterType="int" resultType="AddressInfo">
         select address_id, basic_id, type, info from address_info where basic_id = #{basicId};
     </select>
+    <delete id="deleteById" parameterType="int">
+        delete from address_info where address_id = #{addressId};
+    </delete>
+    <delete id="deleteByBasicId" parameterType="int">
+        delete from address_info where basic_id = #{basicId};
+    </delete>
 </mapper>

@@ -8,4 +8,6 @@ public interface AddressInfoDao {
 	int addAddressInfo(AddressInfo addressInfo);
 	AddressInfo queryById(int addressId);
 	AddressInfo[] queryByBasicId(int basicId);
+	int deleteById(int addressId);
+	int deleteByBasicId(int basicId);
 }

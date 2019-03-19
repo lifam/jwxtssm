@@ -3,6 +3,7 @@ package com.jwxtssm.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jwxtssm.dto.OrgQueryExecution;
+import com.jwxtssm.service.IOrgService;
 import com.jwxtssm.service.impl.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import java.util.TreeMap;
 @Controller
 public class OrgController {
 	@Autowired
-	OrgService orgService;
+	IOrgService orgService;
 
 	@RequestMapping(value = "/org", method = RequestMethod.GET)
 	public String getQueryMajor() {

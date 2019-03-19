@@ -9,4 +9,5 @@ public interface BasicInfoDao {
 	BasicInfo queryByViceId(int viceId);
 	BasicInfo queryById(int basicId);
 	int updateHeadImg(BasicInfo basicInfo);
+	int updateAll(BasicInfo basicInfo);
 }

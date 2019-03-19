@@ -8,23 +8,26 @@ import com.jwxtssm.dto.Result;
 import com.jwxtssm.dto.UserInfoExecution;
 import com.jwxtssm.dto.UserLoginExecution;
 import com.jwxtssm.exception.CustomException;
+import com.jwxtssm.service.IUserService;
 import com.jwxtssm.service.impl.DefaultService;
 import com.jwxtssm.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.TreeMap;
 
 @Controller
 public class UserController {
 	@Autowired
-	UserService userService;
+	IUserService userService;
 	@Autowired
 	DefaultService defaultService;
 
@@ -35,7 +38,8 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public JSON postLogin(String userId, String password, HttpSession session, HttpServletResponse httpServletResponse) {
+	public JSON postLogin(String userId, String password, HttpSession session, HttpServletResponse
+			httpServletResponse) {
 		Utils.clearCookie(httpServletResponse, "set");
 		Map<String, Object> resultMap = new TreeMap<>();
 		if (userId == null || password == null) {
@@ -51,7 +55,8 @@ public class UserController {
 					session.setAttribute(SpecialValues.ROLES, result.getData().getRoles());
 					resultMap.put("state", "success");
 					Utils.clearCookie(httpServletResponse, "headImg");
-					Utils.setSessionAttribute(session, "headImg", defaultService.getHeadImgByBasicId(result.getData().getBasicId()));
+					Utils.setSessionAttribute(session, "headImg", defaultService.getHeadImgByBasicId(result.getData()
+							.getBasicId()));
 				} else {
 					resultMap.put("state", "fail");
 					resultMap.put("message", result.getError());
@@ -90,7 +95,8 @@ public class UserController {
 			throw new CustomException("请先登陆!");
 		}
 		Map<String, Object> resultMap = new TreeMap<>();
-		UserInfoExecution userInfoExecution = userService.getUserInfo((Integer) session.getAttribute(SpecialValues.USER_ID));
+		UserInfoExecution userInfoExecution = userService.getUserInfo((Integer) session.getAttribute(SpecialValues
+				.USER_ID));
 		resultMap.put("viceId", userInfoExecution.getViceId());
 		resultMap.put("name", userInfoExecution.getName());
 		resultMap.put("sex", userInfoExecution.getSex());
@@ -102,10 +108,36 @@ public class UserController {
 		resultMap.put("rewardInfo", userInfoExecution.getRewardInfo());
 		resultMap.put("punishmentInfo", userInfoExecution.getPunishmentInfo());
 		resultMap.put("infoTransparency", userInfoExecution.getInfoTransparency());
-//		resultMap.put("types", userInfoExecution.getTypes());
+		//		resultMap.put("types", userInfoExecution.getTypes());
 		resultMap.put("infoes", userInfoExecution.getInfoes());
 
 		resultMap.put("state", "success");
 		return new JSONObject(resultMap);
+	}
+
+	@RequestMapping(value = "/updateBasicInfo", method = RequestMethod.POST)
+	public String updateBasicInfo(HttpSession session, @RequestParam("user-name-input") String name, @RequestParam
+			("user-password-input") String password, @RequestParam("user-sex-radios") String sex, @RequestParam
+			("user-height-input") String height, @RequestParam("user-weight-input") String weight, @RequestParam
+			("user-birth-input") String birth, @RequestParam("user-address-input") String address, @RequestParam
+			("user-formal-id-input") String formalId, @RequestParam("user-select-info-transparency") String
+			infoTransparency) throws CustomException, UnsupportedEncodingException {
+		if (session.getAttribute(SpecialValues.USER_ID) == null) {
+			throw new CustomException("请先登陆!");
+		}
+		userService.updateBasicInfo((Integer) session.getAttribute(SpecialValues.USER_ID), name, password, sex,
+				height, weight, birth, address, formalId, infoTransparency);
+
+		return "WEB-INF/html/personalPage.html";
+	}
+
+	@RequestMapping(value = "/updateAddressInfo", method = RequestMethod.POST)
+	public String updateAddressInfo(HttpSession session, @RequestParam("user-address-text-input") String addressInfoes) throws CustomException {
+		if (session.getAttribute(SpecialValues.USER_ID) == null) {
+			throw new CustomException("请先登陆!");
+		}
+		userService.updateAddressInfo((Integer) session.getAttribute(SpecialValues.USER_ID), addressInfoes);
+
+		return "WEB-INF/html/personalPage.html";
 	}
 }
